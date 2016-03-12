@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import LineReader
-import Foundation
 
 
 class ParseNodeTests: XCTestCase {
