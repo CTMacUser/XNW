@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		F3ED3D051C92067100C26450 /* LineReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D041C92067100C26450 /* LineReaderTests.swift */; };
 		F3ED3D101C920B3200C26450 /* LineReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D0F1C920B3200C26450 /* LineReader.swift */; };
 		F3ED3D121C92ADE700C26450 /* ParseNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D111C92ADE700C26450 /* ParseNodeTests.swift */; };
+		F3ED3D151C94D67100C26450 /* NSData+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D131C94D67100C26450 /* NSData+Parse.swift */; };
+		F3ED3D161C94D67100C26450 /* ParseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D141C94D67100C26450 /* ParseNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		F3ED3D061C92067100C26450 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3ED3D0F1C920B3200C26450 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
 		F3ED3D111C92ADE700C26450 /* ParseNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseNodeTests.swift; sourceTree = "<group>"; };
+		F3ED3D131C94D67100C26450 /* NSData+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Parse.swift"; sourceTree = "<group>"; };
+		F3ED3D141C94D67100C26450 /* ParseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +79,8 @@
 		F3ED3CF71C92067000C26450 /* LineReader */ = {
 			isa = PBXGroup;
 			children = (
+				F3ED3D131C94D67100C26450 /* NSData+Parse.swift */,
+				F3ED3D141C94D67100C26450 /* ParseNode.swift */,
 				F3ED3CF81C92067000C26450 /* LineReader.h */,
 				F3ED3D0F1C920B3200C26450 /* LineReader.swift */,
 				F3ED3CFA1C92067000C26450 /* Info.plist */,
@@ -161,7 +167,7 @@
 				};
 			};
 			buildConfigurationList = F3ED3CEF1C92067000C26450 /* Build configuration list for PBXProject "LineReader" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,6 +206,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3ED3D161C94D67100C26450 /* ParseNode.swift in Sources */,
+				F3ED3D151C94D67100C26450 /* NSData+Parse.swift in Sources */,
 				F3ED3D101C920B3200C26450 /* LineReader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -390,6 +398,7 @@
 				F3ED3D0B1C92067100C26450 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F3ED3D0C1C92067100C26450 /* Build configuration list for PBXNativeTarget "LineReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +407,7 @@
 				F3ED3D0E1C92067100C26450 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
