@@ -14,6 +14,7 @@
 		F3ED3D121C92ADE700C26450 /* ParseNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D111C92ADE700C26450 /* ParseNodeTests.swift */; };
 		F3ED3D151C94D67100C26450 /* NSData+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D131C94D67100C26450 /* NSData+Parse.swift */; };
 		F3ED3D161C94D67100C26450 /* ParseNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D141C94D67100C26450 /* ParseNode.swift */; };
+		F3ED3D181C94EF6B00C26450 /* NSDataParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ED3D171C94EF6B00C26450 /* NSDataParseTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,7 @@
 		F3ED3D111C92ADE700C26450 /* ParseNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseNodeTests.swift; sourceTree = "<group>"; };
 		F3ED3D131C94D67100C26450 /* NSData+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Parse.swift"; sourceTree = "<group>"; };
 		F3ED3D141C94D67100C26450 /* ParseNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseNode.swift; sourceTree = "<group>"; };
+		F3ED3D171C94EF6B00C26450 /* NSDataParseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataParseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				F3ED3D041C92067100C26450 /* LineReaderTests.swift */,
 				F3ED3D061C92067100C26450 /* Info.plist */,
 				F3ED3D111C92ADE700C26450 /* ParseNodeTests.swift */,
+				F3ED3D171C94EF6B00C26450 /* NSDataParseTests.swift */,
 			);
 			path = LineReaderTests;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				F3ED3D051C92067100C26450 /* LineReaderTests.swift in Sources */,
 				F3ED3D121C92ADE700C26450 /* ParseNodeTests.swift in Sources */,
+				F3ED3D181C94EF6B00C26450 /* NSDataParseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
