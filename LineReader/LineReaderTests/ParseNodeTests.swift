@@ -55,6 +55,7 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(parseNode.linksAreConsistent())
         XCTAssertFalse(parseNode.follows(parseNode))
         XCTAssertTrue(parseNode.terminals().isEmpty)
+        XCTAssertEqual(parseNode.validFollowups(), Set())
     }
 
     // Link tests
@@ -67,6 +68,8 @@ class ParseNodeTests: XCTestCase {
         let nodeA = ParseNode(symbol: 2), nodeB = ParseNode(symbol: 3)
         XCTAssertFalse(nodeA.follows(nodeB))
         XCTAssertFalse(nodeB.follows(nodeA))
+        XCTAssertEqual(nodeA.validFollowups(), Set())
+        XCTAssertEqual(nodeB.validFollowups(), Set())
 
         let (oldPreviousOfB, ejectedNextFromA) = nodeB.follow(nodeA)
         XCTAssertNil(oldPreviousOfB)
@@ -79,6 +82,9 @@ class ParseNodeTests: XCTestCase {
         XCTAssertFalse(nodeB.isRoot)
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
+        XCTAssertEqual(nodeA.validFollowups(), Set([3]))
+        XCTAssertEqual(nodeB.validFollowups(), Set())
+        XCTAssert(nodeA.followupFrom(3) === nodeB)
 
         let anotherOldPreviousOfB = nodeB.unfollow()
         XCTAssert(anotherOldPreviousOfB === nodeA)
@@ -90,6 +96,8 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeB.isRoot)
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
+        XCTAssertEqual(nodeA.validFollowups(), Set())
+        XCTAssertEqual(nodeB.validFollowups(), Set())
     }
 
     func testBasicChain() {
@@ -112,6 +120,12 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertTrue(nodeC.linksAreConsistent())
 
+        XCTAssertEqual(nodeA.validFollowups(), Set([7]))
+        XCTAssertEqual(nodeB.validFollowups(), Set([11]))
+        XCTAssert(nodeA.followupFrom(7) === nodeB)
+        XCTAssert(nodeB.followupFrom(11) === nodeC)
+        XCTAssert(nodeC.followupFrom(2) === nil)
+
         let anotherOldPreviousOfC = nodeC.unfollow()
         XCTAssert(anotherOldPreviousOfC === nodeB)
         XCTAssertFalse(nodeC.follows(nodeA))
@@ -119,6 +133,9 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertTrue(nodeC.linksAreConsistent())
+        XCTAssertEqual(nodeB.validFollowups(), Set())
+        XCTAssert(nodeA.followupFrom(7) === nodeB)
+        XCTAssert(nodeB.followupFrom(11) === nil)
     }
 
     func testMultipleDirectFollowers() {
@@ -142,6 +159,9 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertTrue(nodeC.linksAreConsistent())
+        XCTAssertEqual(nodeA.validFollowups(), Set([17, 19]))
+        XCTAssert(nodeA.followupFrom(17) === nodeB)
+        XCTAssert(nodeA.followupFrom(19) === nodeC)
     }
 
     func testNodeReplacement() {
@@ -149,7 +169,8 @@ class ParseNodeTests: XCTestCase {
         XCTAssert(nodeA.isRoot && nodeA.isLeaf)
         XCTAssert(nodeB.isRoot && nodeB.isLeaf)
         XCTAssert(nodeC.isRoot && nodeC.isLeaf)
-        
+        XCTAssert(nodeA.followupFrom(29) === nil)
+
         let (oldPreviousOfB, ejectedNextFromA) = nodeB.follow(nodeA)
         let nodeD = ParseNode(symbol: 31)
         nodeD.follow(nodeB)
@@ -160,6 +181,8 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeB))
         XCTAssertTrue(nodeD.follows(nodeA))
         XCTAssertFalse(nodeD.follows(nodeC))
+        XCTAssertEqual(nodeA.validFollowups(), Set([29]))
+        XCTAssert(nodeA.followupFrom(29) === nodeB)
 
         let (oldPreviousOfC, anotherEjectedNextFromA) = nodeC.follow(nodeA)
         XCTAssertNil(oldPreviousOfC)
@@ -170,6 +193,8 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeB))
         XCTAssertFalse(nodeD.follows(nodeA))
         XCTAssertFalse(nodeD.follows(nodeC))
+        XCTAssertEqual(nodeA.validFollowups(), Set([29]))
+        XCTAssert(nodeA.followupFrom(29) === nodeC)
     }
 
     func testBadLinks() {
@@ -368,20 +393,29 @@ class ParseNodeTests: XCTestCase {
         let nodeA = ParseNode(symbol: 2), nodeB = ParseNode(symbol: 3)
         XCTAssert(nodeA.isLeaf && nodeA.isRoot)
         XCTAssert(nodeB.isLeaf && nodeB.isRoot)
+        XCTAssertEqual(nodeA.validFollowups(), Set())
+        XCTAssertEqual(nodeB.validFollowups(), Set())
 
         let abandoned1 = nodeB.followWhileMergingParsingData(nodeA)
         XCTAssertTrue(abandoned1.isEmpty)
         XCTAssertTrue(nodeB.follows(nodeA))
+        XCTAssertEqual(nodeA.validFollowups(), Set([3]))
+        XCTAssert(nodeA.followupFrom(3) === nodeB)
 
         let abandoned2 = nodeB.followWhileMergingParsingData(nodeA)
         XCTAssertTrue(abandoned2.isEmpty)
         XCTAssertTrue(nodeB.follows(nodeA))
+        XCTAssertEqual(nodeA.validFollowups(), Set([3]))
+        XCTAssert(nodeA.followupFrom(3) === nodeB)
 
         let nodeC = ParseNode(symbol: 5)
         let abandoned3 = nodeC.followWhileMergingParsingData(nodeA)
         XCTAssertTrue(abandoned3.isEmpty)
         XCTAssertTrue(nodeC.follows(nodeA))
         XCTAssertTrue(nodeB.follows(nodeA))
+        XCTAssertEqual(nodeA.validFollowups(), Set([3, 5]))
+        XCTAssert(nodeA.followupFrom(3) === nodeB)
+        XCTAssert(nodeA.followupFrom(5) === nodeC)
 
         XCTAssertEqual(nodeA.terminals(), [])
         nodeB.isTerminal = true
@@ -396,6 +430,9 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeA))
         XCTAssertTrue(nodeC.follows(nodeA))
         XCTAssertTrue(nodeD.isTerminal)
+        XCTAssertEqual(nodeA.validFollowups(), Set([3, 5]))
+        XCTAssert(nodeA.followupFrom(3) === nodeD)
+        XCTAssert(nodeA.followupFrom(5) === nodeC)
 
         let nodeE = ParseNode(symbol: 7)
         nodeE.follow(nodeD)
@@ -405,6 +442,11 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.isRoot)
         XCTAssertTrue(nodeD.isLeaf)
         XCTAssertTrue(nodeE.follows(nodeB))
+        XCTAssertEqual(nodeA.validFollowups(), Set([3, 5]))
+        XCTAssertEqual(nodeB.validFollowups(), Set([7]))
+        XCTAssert(nodeA.followupFrom(3) === nodeB)
+        XCTAssert(nodeA.followupFrom(5) === nodeC)
+        XCTAssert(nodeB.followupFrom(7) === nodeE)
 
         let nodeF = ParseNode(symbol: 7), nodeG = ParseNode(symbol: 11)
         nodeF.follow(nodeD)

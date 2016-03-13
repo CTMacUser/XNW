@@ -85,6 +85,22 @@ extension ParseNode {
         return true
     }
 
+    /// - returns: The symbols of each directly-following node from the receiver.
+    func validFollowups() -> Set<Symbol> {
+        return Set(self.next.keys)
+    }
+
+    /**
+        Get the node that can match the given symbol if it followed the receiver's symbol in the stream.
+
+        - parameter next: The value to compare.
+
+        - returns: The node that handle the given following symbol, or NIL if there's no match.
+     */
+    func followupFrom(next: Symbol) -> ParseNode? {
+        return self.next[next]
+    }
+
     /**
         Check if the receiver follows the given node when parsing a stream.
 
