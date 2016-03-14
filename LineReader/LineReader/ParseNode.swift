@@ -50,33 +50,29 @@ class ParseNode<Symbol: Hashable> {
 // Parse-termination flagging
 extension ParseNode {
 
-    /// Whether or not the receiver's parse branch stops tracking later symbols.
+    /// Whether the receiver does not have any followers.
     var isLeaf: Bool {
-        get {
-            return self.next.isEmpty
-        }
+        return self.next.isEmpty
     }
 
-    /// Whether or not the receiver is the start node of its parse branch.
+    /// Whether the receiver does not have any leaders.
     var isRoot: Bool {
-        get {
-            return self.previous == nil
-        }
+        return self.previous == nil
     }
 
-    /// - returns: Whether every parse branch going to or through the receiver ends at a node with `isTerminal` set TRUE.
-    func treeIsProperlyTerminated() -> Bool {
-        return self.isLeaf ? self.isTerminal : self.next.values.reduce(true) { return $0 && $1.treeIsProperlyTerminated() }
+    /// Whether every parse branch going to or though the receiver ends at a node with `isTerminal` set to TRUE.
+    var properlyTerminated: Bool {
+        return self.isLeaf ? self.isTerminal : self.next.values.reduce(true) { return $0 && $1.properlyTerminated }
     }
 
-    /// - returns: The maximum length of steps among the parse branches following the receiver.  (A leaf node has 0 steps.)
-    func followerDepth() -> Int {
-        return self.isLeaf ? 0 : 1 + self.next.values.reduce(0) { max($0, $1.followerDepth()) }
+    /// The length of the longest parse branch following the receiver.  (A leaf node has 0 steps.)
+    var followerDepth: Int {
+        return self.isLeaf ? 0 : 1 + self.next.values.reduce(0) { max($0, $1.followerDepth) }
     }
 
-    /// - returns: The number of steps of the parse branch leading to the receiver.  (A root node has 0 steps.)
-    func leaderDepth() -> Int {
-        return self.isRoot ? 0 : 1 + self.previous!.leaderDepth()
+    /// The length of the parse branch leading to the receiver.  (A root node has 0 steps.)
+    var leaderDepth: Int {
+        return self.isRoot ? 0 : 1 + self.previous!.leaderDepth
     }
 
 }
@@ -84,8 +80,8 @@ extension ParseNode {
 // Chaining nodes for processing order
 extension ParseNode {
 
-    /// - returns: A set of symbols, each the corresponding one to a node directly following the receiver.
-    func followupSymbols() -> Set<Symbol> {
+    /// The set of symbols that are an attribute amoung the nodes directly following the receiver.
+    var followupSymbols: Set<Symbol> {
         return Set(self.next.keys)
     }
 
@@ -115,8 +111,8 @@ extension ParseNode {
         }
     }
 
-    /// - returns: The node, if it exists, immediately leading the receiver in the parse branch.
-    func leader() -> ParseNode? {
+    /// The node immediately leading the receiver in their parse branch.  May be NIL.
+    var leader: ParseNode? {
         return self.previous
     }
 
@@ -174,14 +170,14 @@ extension ParseNode {
 // Get and set match chains
 extension ParseNode {
 
-    /// Return the set of symbol sequences that can be matched by this parse tree.
-    func terminals() -> [[Symbol]] {  // Can't make a Set of Array (since the latter is not Hashable)!
+    /// The set of symbol sequences that can be matched by this parse branch.
+    var terminals: [[Symbol]] {  // Can't use Set<[Symbol]> because Array isn't currently Hashable!
         var matchedSet = [[Symbol]]()
         let baseSymbol = [self.symbol]
         if self.isTerminal {
             matchedSet.append(baseSymbol)
         }
-        matchedSet.appendContentsOf(self.next.values.flatMap { $0.terminals() }.map { baseSymbol + $0 })
+        matchedSet.appendContentsOf(self.next.values.flatMap { $0.terminals }.map { baseSymbol + $0 })
         return matchedSet
     }
 

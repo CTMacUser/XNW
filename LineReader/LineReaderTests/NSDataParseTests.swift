@@ -37,7 +37,7 @@ class NSDataParseTests: XCTestCase {
     // Convert a non-empty NSData object.
     func testBasicData() {
         func parseDepth<T>(node: ParseNode<T>) -> Int {
-            return 1 + node.followerDepth()
+            return 1 + node.followerDepth
         }
 
         let dataString = "Hello world"
@@ -45,7 +45,7 @@ class NSDataParseTests: XCTestCase {
         let parse = data!.parseTree
         XCTAssertNotNil(parse)
         XCTAssertEqual(parseDepth(parse!), dataString.utf8.count)
-        let terms = parse!.terminals()
+        let terms = parse!.terminals
         XCTAssertEqual(terms.count, 1)
         XCTAssertEqual(terms[0].count, dataString.utf8.count)
         let termData = NSData(bytes: terms[0], length: terms[0].count * strideof(terms[0].dynamicType.Element.self))

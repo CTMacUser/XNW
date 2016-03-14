@@ -40,10 +40,10 @@ class ParseNodeTests: XCTestCase {
     // Check the initializer.
     func testInitialization() {
         let parseNode = ParseNode(symbol: self.randomByte!)
-        //XCTAssertNil(parseNode.previous)  // Now private
+        // XCTAssertNil(parseNode.previous)  // Now private
         XCTAssertEqual(self.randomByte, parseNode.symbol)
         XCTAssertFalse(parseNode.isTerminal)
-        //XCTAssertTrue(parseNode.next.isEmpty)  // Now private
+        // XCTAssertTrue(parseNode.next.isEmpty)  // Now private
     }
 
     // Check other properties on initialization.
@@ -51,13 +51,13 @@ class ParseNodeTests: XCTestCase {
         let parseNode = ParseNode(symbol: self.randomByte!)
         XCTAssertTrue(parseNode.isLeaf)
         XCTAssertTrue(parseNode.isRoot)
-        XCTAssertFalse(parseNode.treeIsProperlyTerminated())
+        XCTAssertFalse(parseNode.properlyTerminated)
         XCTAssertFalse(parseNode.follows(parseNode))
-        XCTAssertTrue(parseNode.terminals().isEmpty)
-        XCTAssertEqual(parseNode.followupSymbols(), Set())
-        XCTAssertNil(parseNode.leader())
-        XCTAssertEqual(parseNode.leaderDepth(), 0)
-        XCTAssertEqual(parseNode.followerDepth(), 0)
+        XCTAssertTrue(parseNode.terminals.isEmpty)
+        XCTAssertEqual(parseNode.followupSymbols, Set())
+        XCTAssertNil(parseNode.leader)
+        XCTAssertEqual(parseNode.leaderDepth, 0)
+        XCTAssertEqual(parseNode.followerDepth, 0)
     }
 
     // Link tests
@@ -70,40 +70,40 @@ class ParseNodeTests: XCTestCase {
         let nodeA = ParseNode(symbol: 2), nodeB = ParseNode(symbol: 3)
         XCTAssertFalse(nodeA.follows(nodeB))
         XCTAssertFalse(nodeB.follows(nodeA))
-        XCTAssertEqual(nodeA.followupSymbols(), Set())
-        XCTAssertEqual(nodeB.followupSymbols(), Set())
+        XCTAssertEqual(nodeA.followupSymbols, Set())
+        XCTAssertEqual(nodeB.followupSymbols, Set())
 
         let (oldPreviousOfB, ejectedNextFromA) = nodeB.follow(nodeA)
         XCTAssertNil(oldPreviousOfB)
         XCTAssertNil(ejectedNextFromA)
-        XCTAssert(nodeB.leader() === nodeA)
+        XCTAssert(nodeB.leader === nodeA)
         XCTAssert(nodeA.followerUsing(nodeB.symbol) === nodeB)
         XCTAssertFalse(nodeA.follows(nodeB))
         XCTAssertTrue(nodeB.follows(nodeA))
         XCTAssertFalse(nodeA.isLeaf)
         XCTAssertFalse(nodeB.isRoot)
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3]))
-        XCTAssertEqual(nodeB.followupSymbols(), Set())
+        XCTAssertEqual(nodeA.followupSymbols, Set([3]))
+        XCTAssertEqual(nodeB.followupSymbols, Set())
         XCTAssert(nodeA.followerUsing(3) === nodeB)
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 1)
-        XCTAssertEqual(nodeA.followerDepth(), 1)
-        XCTAssertEqual(nodeB.followerDepth(), 0)
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 1)
+        XCTAssertEqual(nodeA.followerDepth, 1)
+        XCTAssertEqual(nodeB.followerDepth, 0)
 
         let anotherOldPreviousOfB = nodeB.unfollow()
         XCTAssert(anotherOldPreviousOfB === nodeA)
         XCTAssertFalse(nodeA.follows(nodeB))
         XCTAssertFalse(nodeB.follows(nodeA))
-        XCTAssert(nodeB.leader() !== nodeA)
+        XCTAssert(nodeB.leader !== nodeA)
         XCTAssert(nodeA.followerUsing(nodeB.symbol) !== nodeB)
         XCTAssertTrue(nodeA.isLeaf)
         XCTAssertTrue(nodeB.isRoot)
-        XCTAssertEqual(nodeA.followupSymbols(), Set())
-        XCTAssertEqual(nodeB.followupSymbols(), Set())
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 0)
-        XCTAssertEqual(nodeA.followerDepth(), 0)
-        XCTAssertEqual(nodeB.followerDepth(), 0)
+        XCTAssertEqual(nodeA.followupSymbols, Set())
+        XCTAssertEqual(nodeB.followupSymbols, Set())
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 0)
+        XCTAssertEqual(nodeA.followerDepth, 0)
+        XCTAssertEqual(nodeB.followerDepth, 0)
     }
 
     func testBasicChain() {
@@ -122,15 +122,15 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeC.follows(nodeB))
         XCTAssertTrue(nodeC.follows(nodeA))
         XCTAssert(!nodeB.isRoot && !nodeB.isLeaf)
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 1)
-        XCTAssertEqual(nodeC.leaderDepth(), 2)
-        XCTAssertEqual(nodeA.followerDepth(), 2)
-        XCTAssertEqual(nodeB.followerDepth(), 1)
-        XCTAssertEqual(nodeC.followerDepth(), 0)
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 1)
+        XCTAssertEqual(nodeC.leaderDepth, 2)
+        XCTAssertEqual(nodeA.followerDepth, 2)
+        XCTAssertEqual(nodeB.followerDepth, 1)
+        XCTAssertEqual(nodeC.followerDepth, 0)
 
-        XCTAssertEqual(nodeA.followupSymbols(), Set([7]))
-        XCTAssertEqual(nodeB.followupSymbols(), Set([11]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([7]))
+        XCTAssertEqual(nodeB.followupSymbols, Set([11]))
         XCTAssert(nodeA.followerUsing(7) === nodeB)
         XCTAssert(nodeB.followerUsing(11) === nodeC)
         XCTAssert(nodeC.followerUsing(2) === nil)
@@ -139,13 +139,13 @@ class ParseNodeTests: XCTestCase {
         XCTAssert(anotherOldPreviousOfC === nodeB)
         XCTAssertFalse(nodeC.follows(nodeA))
         XCTAssertTrue(nodeC.isRoot)
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 1)
-        XCTAssertEqual(nodeC.leaderDepth(), 0)
-        XCTAssertEqual(nodeA.followerDepth(), 1)
-        XCTAssertEqual(nodeB.followerDepth(), 0)
-        XCTAssertEqual(nodeC.followerDepth(), 0)
-        XCTAssertEqual(nodeB.followupSymbols(), Set())
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 1)
+        XCTAssertEqual(nodeC.leaderDepth, 0)
+        XCTAssertEqual(nodeA.followerDepth, 1)
+        XCTAssertEqual(nodeB.followerDepth, 0)
+        XCTAssertEqual(nodeC.followerDepth, 0)
+        XCTAssertEqual(nodeB.followupSymbols, Set())
         XCTAssert(nodeA.followerUsing(7) === nodeB)
         XCTAssert(nodeB.followerUsing(11) === nil)
     }
@@ -168,15 +168,15 @@ class ParseNodeTests: XCTestCase {
         XCTAssert(nodeA.isRoot && !nodeA.isLeaf)
         XCTAssert(!nodeB.isRoot && nodeB.isLeaf)
         XCTAssert(!nodeC.isRoot && nodeC.isLeaf)
-        XCTAssertEqual(nodeA.followupSymbols(), Set([17, 19]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([17, 19]))
         XCTAssert(nodeA.followerUsing(17) === nodeB)
         XCTAssert(nodeA.followerUsing(19) === nodeC)
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 1)
-        XCTAssertEqual(nodeC.leaderDepth(), 1)
-        XCTAssertEqual(nodeA.followerDepth(), 1)
-        XCTAssertEqual(nodeB.followerDepth(), 0)
-        XCTAssertEqual(nodeC.followerDepth(), 0)
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 1)
+        XCTAssertEqual(nodeC.leaderDepth, 1)
+        XCTAssertEqual(nodeA.followerDepth, 1)
+        XCTAssertEqual(nodeB.followerDepth, 0)
+        XCTAssertEqual(nodeC.followerDepth, 0)
     }
 
     func testNodeReplacement() {
@@ -196,7 +196,7 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeB))
         XCTAssertTrue(nodeD.follows(nodeA))
         XCTAssertFalse(nodeD.follows(nodeC))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([29]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([29]))
         XCTAssert(nodeA.followerUsing(29) === nodeB)
 
         let (oldPreviousOfC, anotherEjectedNextFromA) = nodeC.follow(nodeA)
@@ -208,7 +208,7 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeB))
         XCTAssertFalse(nodeD.follows(nodeA))
         XCTAssertFalse(nodeD.follows(nodeC))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([29]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([29]))
         XCTAssert(nodeA.followerUsing(29) === nodeC)
     }
 
@@ -228,165 +228,165 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeA))
 
         // The nodes' "isTerminal" properties will be flipped in Gray's Code order.  This is the all-FALSE case block.
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0000
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0000
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeA.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0001
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0001
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeB.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0011
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0011
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeA.isTerminal = false
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0010
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        //XCTAssertEqual(nodeA.terminals(), [])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0010
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeC.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0110
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102]])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0110
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102]])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeA.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0111
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102]])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0111
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102]])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeB.isTerminal = false
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0101
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102]])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0101
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102]])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeA.isTerminal = false
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 0100
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeC.treeIsProperlyTerminated())
-        XCTAssertFalse(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102]])
-        XCTAssertEqual(nodeD.terminals(), [])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 0100
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertFalse(nodeC.properlyTerminated)
+        XCTAssertFalse(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102]])
+        XCTAssertEqual(nodeD.terminals, [])
 
         nodeD.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 1100
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102], [100, 102, 103]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102], [102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 1100
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102], [100, 102, 103]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102], [102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeA.isTerminal = true
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 1101
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102], [100, 102, 103]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102], [102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 1101
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102], [100, 102, 103]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102], [102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeB.isTerminal = true
-        XCTAssertTrue(nodeA.treeIsProperlyTerminated())  // 1111
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102], [100, 102, 103], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102], [102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertTrue(nodeA.properlyTerminated)  // 1111
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102], [100, 102, 103], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102], [102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeA.isTerminal = false
-        XCTAssertTrue(nodeA.treeIsProperlyTerminated())  // 1110
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102], [100, 102, 103], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102], [102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertTrue(nodeA.properlyTerminated)  // 1110
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102], [100, 102, 103], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102], [102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeC.isTerminal = false
-        XCTAssertTrue(nodeA.treeIsProperlyTerminated())  // 1010
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102, 103], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertTrue(nodeA.properlyTerminated)  // 1010
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102, 103], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeA.isTerminal = true
-        XCTAssertTrue(nodeA.treeIsProperlyTerminated())  // 1011
-        XCTAssertTrue(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102, 103], [100, 101]])
-        XCTAssertEqual(nodeB.terminals(), [[101]])
-        XCTAssertEqual(nodeC.terminals(), [[102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertTrue(nodeA.properlyTerminated)  // 1011
+        XCTAssertTrue(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102, 103], [100, 101]])
+        XCTAssertEqual(nodeB.terminals, [[101]])
+        XCTAssertEqual(nodeC.terminals, [[102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeB.isTerminal = false
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 1001
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100], [100, 102, 103]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 1001
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100], [100, 102, 103]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
 
         nodeA.isTerminal = false
-        XCTAssertFalse(nodeA.treeIsProperlyTerminated())  // 1000
-        XCTAssertFalse(nodeB.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeC.treeIsProperlyTerminated())
-        XCTAssertTrue(nodeD.treeIsProperlyTerminated())
-        XCTAssertEqual(nodeA.terminals(), [[100, 102, 103]])
-        XCTAssertEqual(nodeB.terminals(), [])
-        XCTAssertEqual(nodeC.terminals(), [[102, 103]])
-        XCTAssertEqual(nodeD.terminals(), [[103]])
+        XCTAssertFalse(nodeA.properlyTerminated)  // 1000
+        XCTAssertFalse(nodeB.properlyTerminated)
+        XCTAssertTrue(nodeC.properlyTerminated)
+        XCTAssertTrue(nodeD.properlyTerminated)
+        XCTAssertEqual(nodeA.terminals, [[100, 102, 103]])
+        XCTAssertEqual(nodeB.terminals, [])
+        XCTAssertEqual(nodeC.terminals, [[102, 103]])
+        XCTAssertEqual(nodeD.terminals, [[103]])
     }
 
     // Combining multiple terms
@@ -394,19 +394,19 @@ class ParseNodeTests: XCTestCase {
         let nodeA = ParseNode(symbol: 2), nodeB = ParseNode(symbol: 3)
         XCTAssert(nodeA.isLeaf && nodeA.isRoot)
         XCTAssert(nodeB.isLeaf && nodeB.isRoot)
-        XCTAssertEqual(nodeA.followupSymbols(), Set())
-        XCTAssertEqual(nodeB.followupSymbols(), Set())
+        XCTAssertEqual(nodeA.followupSymbols, Set())
+        XCTAssertEqual(nodeB.followupSymbols, Set())
 
         let abandoned1 = nodeB.followWhileMergingParsingData(nodeA)
         XCTAssertTrue(abandoned1.isEmpty)
         XCTAssertTrue(nodeB.follows(nodeA))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([3]))
         XCTAssert(nodeA.followerUsing(3) === nodeB)
 
         let abandoned2 = nodeB.followWhileMergingParsingData(nodeA)
         XCTAssertTrue(abandoned2.isEmpty)
         XCTAssertTrue(nodeB.follows(nodeA))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([3]))
         XCTAssert(nodeA.followerUsing(3) === nodeB)
 
         let nodeC = ParseNode(symbol: 5)
@@ -414,13 +414,13 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(abandoned3.isEmpty)
         XCTAssertTrue(nodeC.follows(nodeA))
         XCTAssertTrue(nodeB.follows(nodeA))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3, 5]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([3, 5]))
         XCTAssert(nodeA.followerUsing(3) === nodeB)
         XCTAssert(nodeA.followerUsing(5) === nodeC)
 
-        XCTAssertEqual(nodeA.terminals(), [])
+        XCTAssertEqual(nodeA.terminals, [])
         nodeB.isTerminal = true
-        XCTAssertEqual(nodeA.terminals(), [[2, 3]])
+        XCTAssertEqual(nodeA.terminals, [[2, 3]])
 
         let nodeD = ParseNode(symbol: 3)
         XCTAssertFalse(nodeD.isTerminal)
@@ -431,7 +431,7 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.follows(nodeA))
         XCTAssertTrue(nodeC.follows(nodeA))
         XCTAssertTrue(nodeD.isTerminal)
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3, 5]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([3, 5]))
         XCTAssert(nodeA.followerUsing(3) === nodeD)
         XCTAssert(nodeA.followerUsing(5) === nodeC)
 
@@ -443,8 +443,8 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeD.isRoot)
         XCTAssertTrue(nodeD.isLeaf)
         XCTAssertTrue(nodeE.follows(nodeB))
-        XCTAssertEqual(nodeA.followupSymbols(), Set([3, 5]))
-        XCTAssertEqual(nodeB.followupSymbols(), Set([7]))
+        XCTAssertEqual(nodeA.followupSymbols, Set([3, 5]))
+        XCTAssertEqual(nodeB.followupSymbols, Set([7]))
         XCTAssert(nodeA.followerUsing(3) === nodeB)
         XCTAssert(nodeA.followerUsing(5) === nodeC)
         XCTAssert(nodeB.followerUsing(7) === nodeE)
@@ -462,20 +462,20 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeG.follows(nodeE))
         XCTAssertTrue(nodeG.follows(nodeA))
 
-        XCTAssertEqual(nodeA.leaderDepth(), 0)
-        XCTAssertEqual(nodeB.leaderDepth(), 0)
-        XCTAssertEqual(nodeC.leaderDepth(), 1)
-        XCTAssertEqual(nodeD.leaderDepth(), 1)
-        XCTAssertEqual(nodeE.leaderDepth(), 2)
-        XCTAssertEqual(nodeF.leaderDepth(), 0)
-        XCTAssertEqual(nodeG.leaderDepth(), 3)
-        XCTAssertEqual(nodeA.followerDepth(), 3)
-        XCTAssertEqual(nodeB.followerDepth(), 0)
-        XCTAssertEqual(nodeC.followerDepth(), 0)
-        XCTAssertEqual(nodeD.followerDepth(), 2)
-        XCTAssertEqual(nodeE.followerDepth(), 1)
-        XCTAssertEqual(nodeF.followerDepth(), 0)
-        XCTAssertEqual(nodeG.followerDepth(), 0)
+        XCTAssertEqual(nodeA.leaderDepth, 0)
+        XCTAssertEqual(nodeB.leaderDepth, 0)
+        XCTAssertEqual(nodeC.leaderDepth, 1)
+        XCTAssertEqual(nodeD.leaderDepth, 1)
+        XCTAssertEqual(nodeE.leaderDepth, 2)
+        XCTAssertEqual(nodeF.leaderDepth, 0)
+        XCTAssertEqual(nodeG.leaderDepth, 3)
+        XCTAssertEqual(nodeA.followerDepth, 3)
+        XCTAssertEqual(nodeB.followerDepth, 0)
+        XCTAssertEqual(nodeC.followerDepth, 0)
+        XCTAssertEqual(nodeD.followerDepth, 2)
+        XCTAssertEqual(nodeE.followerDepth, 1)
+        XCTAssertEqual(nodeF.followerDepth, 0)
+        XCTAssertEqual(nodeG.followerDepth, 0)
     }
 
 }
