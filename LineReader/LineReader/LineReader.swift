@@ -32,9 +32,7 @@ public class LineReader: NSObject {
     public weak var delegate: LineReaderDelegate?
     /// The set of byte sequences that each can end a block of input.
     public var terminators: Set<NSData> {
-        get {
-            return Set(parseTree.next.values.flatMap { $0.terminals() }.map { NSData(bytes: $0, length: $0.count * strideof($0.dynamicType.Element.self)) })
-        }
+        return Set(self.parseTree.followupSymbols().map { self.parseTree.followerUsing($0) }.flatMap { $0!.terminals() }.map { NSData(bytes: $0.withUnsafeBufferPointer {$0.baseAddress}, length: $0.count * strideof($0.dynamicType.Element.self)) })
     }
 
     /// The parsing tree to match incoming bytes to any delimiters.  (The root node isn't used.)
@@ -52,7 +50,6 @@ public class LineReader: NSObject {
         lineTerminators.forEach { $0.parseTree?.followWhileMergingParsingData(self.parseTree) }
         self.parseTree.isTerminal = true  // For passing the following assert,... even when otherwise termless.
         assert(self.parseTree.treeIsProperlyTerminated())
-        assert(self.parseTree.linksAreConsistent())
     }
 
     //func lineateData(data: NSData)

@@ -8,17 +8,23 @@
 */
 
 
-/// Nodes, including root, of the parsing tree
+/**
+    Parsing tree node (including root nodes).
+
+    - parameter Symbol: The units to be streamed for parsing matches.
+
+    - invariant: Given two nodes *leader* and *follower*, `leader === follower.leader()` and `leader.followerUsing(follower.symbol) === follower` imply each other.
+ */
 class ParseNode<Symbol: Hashable> {
 
     /// The node representing the previous symbol to match from the stream.  When not NIL, must match the invariants of `next` in the opposite direction.
-    weak var previous: ParseNode?
+    private weak var previous: ParseNode?
     /// The symbol value to match
     let symbol: Symbol
     /// Whether or not a symbol match at this point could mean a parsing match.
     var isTerminal: Bool
     /// Matches for later symbols in the stream. Invariant for each element _X_: `X.key == X.value.symbol` **AND** `X.value.previous == self`.
-    var next: [Symbol: ParseNode]
+    private var next: [Symbol: ParseNode]
 
     /**
         Initializes a new parsing node.
@@ -77,23 +83,6 @@ extension ParseNode {
 
 // Chaining nodes for processing order
 extension ParseNode {
-
-    /// - returns: Whether the meta-data between two nodes (receiver and leader, and receiver and followers) are consistent.
-    func linksAreConsistent() -> Bool {
-        if let previous = self.previous {
-            if previous.next[self.symbol] !== self {
-                return false
-            }
-        }
-
-        for (nextSymbol, nextNode) in self.next {
-            if nextSymbol != nextNode.symbol || self !== nextNode.previous || !nextNode.linksAreConsistent() {
-                return false
-            }
-        }
-
-        return true
-    }
 
     /// - returns: A set of symbols, each the corresponding one to a node directly following the receiver.
     func followupSymbols() -> Set<Symbol> {
@@ -169,16 +158,13 @@ extension ParseNode {
         - returns: *Previous* and *Next* as a tuple (in that order). Either may be NIL.
      */
     func follow(predecessor: ParseNode) -> (ParseNode?, ParseNode?) {
-        assert(predecessor !== self)
-        assert(!predecessor.follows(self))
+        precondition(predecessor !== self && !predecessor.follows(self))  // Prevent node loops!
 
         let ancestor = self.unfollow()
         self.previous = predecessor
 
         let supplanted = predecessor.next.updateValue(self, forKey: self.symbol)
-        assert(self.symbol == (supplanted ?? self).symbol)
-        // The following line is bad when `supplanted === self`.  However, that can't happen.  Any `self`/`supplanted` equivalence would require `ancestor` to be the same object as `predecessor`, but the `updateValue` call recreates the connection between `self` and `ancestor`/`predecessor` instead of displacing the old one, since that old connection was removed during `self.unfollow()`!
-        supplanted?.previous = nil
+        supplanted?.previous = nil  // 'self.unfollow()' prevents 'supplanted === self', so no worries here.
 
         return (ancestor, supplanted)
     }
@@ -222,7 +208,7 @@ extension ParseNode {
             orphaned.append(mergable)
 
             // Using mergable.next.values directly to transfer sub-nodes to self would involve self-modification of a lazy collection.  To avoid any issues there, first copy references to the sub-nodes to a new collection.  The recursive call from each sub-node returns an array too, so use 'flatMap' to avoid an array of arrays.
-            orphaned.appendContentsOf([ParseNode](mergable.next.values).flatMap { return $0.followWhileMergingParsingData(self) })
+            orphaned.appendContentsOf(Array(mergable.next.values).flatMap { $0.followWhileMergingParsingData(self) })
         }
         return orphaned
     }

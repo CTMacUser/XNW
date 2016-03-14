@@ -37,7 +37,7 @@ class NSDataParseTests: XCTestCase {
     // Convert a non-empty NSData object.
     func testBasicData() {
         func parseDepth<T>(node: ParseNode<T>) -> Int {
-            return 1 + node.next.values.reduce(0, combine: { return max($0, parseDepth($1)) })
+            return 1 + node.followerDepth()
         }
 
         let dataString = "Hello world"
