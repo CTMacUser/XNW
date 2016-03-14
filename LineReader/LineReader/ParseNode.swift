@@ -58,9 +58,10 @@ extension ParseNode {
         }
     }
 
-    /// Checks whether or not all paths in the receiver's parse tree end with a terminal
+    /// - returns: Whether every parse branch going to or through the receiver ends at a node with `isTerminal` set TRUE.
     func treeIsProperlyTerminated() -> Bool {
-        return self.isLeaf ? self.isTerminal : self.next.values.reduce(true, combine:{ return $0 && $1.treeIsProperlyTerminated() })
+        return self.isLeaf ? self.isTerminal : self.next.values.reduce(true) { return $0 && $1.treeIsProperlyTerminated() }
+    }
     }
 
 }
@@ -68,7 +69,7 @@ extension ParseNode {
 // Chaining nodes for processing order
 extension ParseNode {
 
-    /// Verifies the connections between the receiver and its symbol-stream predecessor and successors.
+    /// - returns: Whether the meta-data between two nodes (receiver and leader, and receiver and followers) are consistent.
     func linksAreConsistent() -> Bool {
         if let previous = self.previous {
             if previous.next[self.symbol] !== self {
@@ -85,8 +86,8 @@ extension ParseNode {
         return true
     }
 
-    /// - returns: The symbols of each directly-following node from the receiver.
-    func validFollowups() -> Set<Symbol> {
+    /// - returns: A set of symbols, each the corresponding one to a node directly following the receiver.
+    func followupSymbols() -> Set<Symbol> {
         return Set(self.next.keys)
     }
 
@@ -95,16 +96,16 @@ extension ParseNode {
 
         - parameter next: The value to compare.
 
-        - returns: The node that handle the given following symbol, or NIL if there's no match.
+        - returns: The immediately-following node that handles the given symbol, or NIL if there's no such match.
      */
-    func followupFrom(next: Symbol) -> ParseNode? {
+    func followerUsing(next: Symbol) -> ParseNode? {
         return self.next[next]
     }
 
     /**
         Check if the receiver follows the given node when parsing a stream.
 
-        - parameter predecessor: The possible eariler node.
+        - parameter predecessor: The possible leader node.
 
         - returns: Whether or not the receiver follows `predecessor`, directly or indirectly.
      */
@@ -117,7 +118,7 @@ extension ParseNode {
     }
 
     /**
-        Disconnect the receiver from the node that immediately preceeds it in parsing the symbol-stream.
+        Disconnect the receiver from its immediately leading node.
 
         - postcondition:
             - Let *X* be `self.previous` pre-run: if *X* is not NIL, then `X.next[self.symbol] == nil`.
@@ -136,13 +137,13 @@ extension ParseNode {
     }
 
     /**
-        Connect the receiver as a follower to the given node, disconnecting the links in the way.
+        Connect the receiver as a direct follower to the given node, disconnecting any links in the way.
 
-        - parameter predecessor: The node to be the (new) immediately-preceeding node while parsing a symbol-stream.
+        - parameter predecessor: The node to be the receiver's (new) leader.
 
         - precondition:
-            - `predecessor` and `self` must be distinct objects.
-            - `predecessor` cannot already be a later node from the receiver while parsing a symbol-stream.
+            - `predecessor !== self`.
+            - `predecessor.follows(self)` must be FALSE.
 
         - postcondition:
             - First, let *Next* be `predecessor.next[self.symbol]` and *Previous* be `self.previous`, both pre-run.
@@ -151,7 +152,7 @@ extension ParseNode {
             - `self.previous === predecessor`.
             - `predecessor.next[self.symbol] === self`.
      
-        - returns: *Previous* and *Next* (in that order). Either may be NIL.
+        - returns: *Previous* and *Next* as a tuple (in that order). Either may be NIL.
      */
     func follow(predecessor: ParseNode) -> (ParseNode?, ParseNode?) {
         assert(predecessor !== self)
@@ -162,7 +163,7 @@ extension ParseNode {
 
         let supplanted = predecessor.next.updateValue(self, forKey: self.symbol)
         assert(self.symbol == (supplanted ?? self).symbol)
-        // The following line is bad when `supplanted === self`.  However, that can't happen.  Any `self`/`supplanted` connection would require `ancestor` to be the same object as `predecessor`, but the `updateValue` call recreates the connection between `self` and `ancestor`/`predecessor` instead of displacing the old one, since that old connection was removed during `self.unfollow()`!
+        // The following line is bad when `supplanted === self`.  However, that can't happen.  Any `self`/`supplanted` equivalence would require `ancestor` to be the same object as `predecessor`, but the `updateValue` call recreates the connection between `self` and `ancestor`/`predecessor` instead of displacing the old one, since that old connection was removed during `self.unfollow()`!
         supplanted?.previous = nil
 
         return (ancestor, supplanted)
@@ -194,8 +195,8 @@ extension ParseNode {
         - postcondition:
             - First, start with the postconditions from `(Previous, Next) = self.follow(predecessor)`.
             - If *Next* is not NIL, `self.isTerminal` becomes itself OR'd with `Next.isTerminal`.
-            - `Next.next.isEmpty` is TRUE when *Next* is distinct from `self`.
-            - The sub-nodes of *Next* are in `self`, recursively added with this method (if needed).
+            - If `Next !== self`, then `Next.isLeaf` is TRUE.
+            - The sub-nodes of *Next* are in `self`, recursively added with this method (when `Next !== self`).
 
         - returns: A collection of the disconnected nodes.  When *Next* is neither NIL nor `self`, the collection consists of *Next*, the sub-nodes of `self` that were displaced by sub-nodes of *Next*, and so on.  (At each recursive level, the sources of the kept and discarded nodes alternate between `self` and *Next*.)
      */
