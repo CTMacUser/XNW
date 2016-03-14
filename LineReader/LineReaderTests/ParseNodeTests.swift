@@ -56,6 +56,9 @@ class ParseNodeTests: XCTestCase {
         XCTAssertFalse(parseNode.follows(parseNode))
         XCTAssertTrue(parseNode.terminals().isEmpty)
         XCTAssertEqual(parseNode.followupSymbols(), Set())
+        XCTAssertNil(parseNode.leader())
+        XCTAssertEqual(parseNode.leaderDepth(), 0)
+        XCTAssertEqual(parseNode.followerDepth(), 0)
     }
 
     // Link tests
@@ -85,6 +88,10 @@ class ParseNodeTests: XCTestCase {
         XCTAssertEqual(nodeA.followupSymbols(), Set([3]))
         XCTAssertEqual(nodeB.followupSymbols(), Set())
         XCTAssert(nodeA.followerUsing(3) === nodeB)
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 1)
+        XCTAssertEqual(nodeA.followerDepth(), 1)
+        XCTAssertEqual(nodeB.followerDepth(), 0)
 
         let anotherOldPreviousOfB = nodeB.unfollow()
         XCTAssert(anotherOldPreviousOfB === nodeA)
@@ -98,6 +105,10 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertEqual(nodeA.followupSymbols(), Set())
         XCTAssertEqual(nodeB.followupSymbols(), Set())
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 0)
+        XCTAssertEqual(nodeA.followerDepth(), 0)
+        XCTAssertEqual(nodeB.followerDepth(), 0)
     }
 
     func testBasicChain() {
@@ -119,6 +130,12 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertTrue(nodeC.linksAreConsistent())
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 1)
+        XCTAssertEqual(nodeC.leaderDepth(), 2)
+        XCTAssertEqual(nodeA.followerDepth(), 2)
+        XCTAssertEqual(nodeB.followerDepth(), 1)
+        XCTAssertEqual(nodeC.followerDepth(), 0)
 
         XCTAssertEqual(nodeA.followupSymbols(), Set([7]))
         XCTAssertEqual(nodeB.followupSymbols(), Set([11]))
@@ -133,6 +150,12 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeA.linksAreConsistent())
         XCTAssertTrue(nodeB.linksAreConsistent())
         XCTAssertTrue(nodeC.linksAreConsistent())
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 1)
+        XCTAssertEqual(nodeC.leaderDepth(), 0)
+        XCTAssertEqual(nodeA.followerDepth(), 1)
+        XCTAssertEqual(nodeB.followerDepth(), 0)
+        XCTAssertEqual(nodeC.followerDepth(), 0)
         XCTAssertEqual(nodeB.followupSymbols(), Set())
         XCTAssert(nodeA.followerUsing(7) === nodeB)
         XCTAssert(nodeB.followerUsing(11) === nil)
@@ -162,6 +185,12 @@ class ParseNodeTests: XCTestCase {
         XCTAssertEqual(nodeA.followupSymbols(), Set([17, 19]))
         XCTAssert(nodeA.followerUsing(17) === nodeB)
         XCTAssert(nodeA.followerUsing(19) === nodeC)
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 1)
+        XCTAssertEqual(nodeC.leaderDepth(), 1)
+        XCTAssertEqual(nodeA.followerDepth(), 1)
+        XCTAssertEqual(nodeB.followerDepth(), 0)
+        XCTAssertEqual(nodeC.followerDepth(), 0)
     }
 
     func testNodeReplacement() {
@@ -460,6 +489,21 @@ class ParseNodeTests: XCTestCase {
         XCTAssertTrue(nodeE.follows(nodeD))
         XCTAssertTrue(nodeG.follows(nodeE))
         XCTAssertTrue(nodeG.follows(nodeA))
+
+        XCTAssertEqual(nodeA.leaderDepth(), 0)
+        XCTAssertEqual(nodeB.leaderDepth(), 0)
+        XCTAssertEqual(nodeC.leaderDepth(), 1)
+        XCTAssertEqual(nodeD.leaderDepth(), 1)
+        XCTAssertEqual(nodeE.leaderDepth(), 2)
+        XCTAssertEqual(nodeF.leaderDepth(), 0)
+        XCTAssertEqual(nodeG.leaderDepth(), 3)
+        XCTAssertEqual(nodeA.followerDepth(), 3)
+        XCTAssertEqual(nodeB.followerDepth(), 0)
+        XCTAssertEqual(nodeC.followerDepth(), 0)
+        XCTAssertEqual(nodeD.followerDepth(), 2)
+        XCTAssertEqual(nodeE.followerDepth(), 1)
+        XCTAssertEqual(nodeF.followerDepth(), 0)
+        XCTAssertEqual(nodeG.followerDepth(), 0)
     }
 
 }

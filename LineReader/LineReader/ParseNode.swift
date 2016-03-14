@@ -62,6 +62,15 @@ extension ParseNode {
     func treeIsProperlyTerminated() -> Bool {
         return self.isLeaf ? self.isTerminal : self.next.values.reduce(true) { return $0 && $1.treeIsProperlyTerminated() }
     }
+
+    /// - returns: The maximum length of steps among the parse branches following the receiver.  (A leaf node has 0 steps.)
+    func followerDepth() -> Int {
+        return self.isLeaf ? 0 : 1 + self.next.values.reduce(0) { max($0, $1.followerDepth()) }
+    }
+
+    /// - returns: The number of steps of the parse branch leading to the receiver.  (A root node has 0 steps.)
+    func leaderDepth() -> Int {
+        return self.isRoot ? 0 : 1 + self.previous!.leaderDepth()
     }
 
 }
@@ -117,12 +126,17 @@ extension ParseNode {
         }
     }
 
+    /// - returns: The node, if it exists, immediately leading the receiver in the parse branch.
+    func leader() -> ParseNode? {
+        return self.previous
+    }
+
     /**
         Disconnect the receiver from its immediately leading node.
 
         - postcondition:
-            - Let *X* be `self.previous` pre-run: if *X* is not NIL, then `X.next[self.symbol] == nil`.
-            - `self.previous == nil`.
+            - Let *X* be `self.leader()` pre-run: `X?.followerUsing(self.symbol) == nil`.
+            - `self.leader() == nil`.
 
         - returns: *X*.
      */
@@ -146,11 +160,11 @@ extension ParseNode {
             - `predecessor.follows(self)` must be FALSE.
 
         - postcondition:
-            - First, let *Next* be `predecessor.next[self.symbol]` and *Previous* be `self.previous`, both pre-run.
-            - If *Previous* is not NIL and not `predecessor`: `Previous.next[self.symbol] == nil`.
-            - If *Next* is not NIL and not `self`: `Next.previous == nil`.
-            - `self.previous === predecessor`.
-            - `predecessor.next[self.symbol] === self`.
+            - First, let *Previous* be `self.leader()` and *Next* be `predecessor.followerUsing(self.symbol)`, both pre-run.
+            - If `Previous !== predecessor`, then `Previous?.followerUsing(self.symbol) == nil`.
+            - If `Next !== self`, then `Next?.leader() == nil`.
+            - `self.leader() === predecessor`.
+            - `predecessor.followerUsing(self.symbol) === self`.
      
         - returns: *Previous* and *Next* as a tuple (in that order). Either may be NIL.
      */
