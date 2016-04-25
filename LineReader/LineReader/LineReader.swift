@@ -52,7 +52,22 @@ public class LineReader: NSObject {
         assert(self.parseTree.properlyTerminated)
     }
 
-    //func lineateData(data: NSData)
-    //func flushDataCallingDelegate(callDelegate: Bool)
+    /**
+        - parameter data: The data to be read.
+
+        - postcondition: For each block of data found, terminated by the longest match out of `terminators`, calls `self.delegate?.delineateDataFromReader()` with the receiver, the data block proper, and the terminator sequence.  Extra data after the last call to the delegate that either is not terminated or has a terminator that can be a prefix to another terminator stays in a buffer until the next call to this method or `self.flushDataCallingDelegate()`.
+     */
+    public func lineateData(data: NSData) {
+        //
+    }
+
+    /**
+        - parameter callDelegate: Whether to call `self.delegate` with any data in the buffer.
+
+        - postcondition: If `callDelegate == false` OR `self.delegate == nil`, then any read data still in the buffer is purged.  Otherwise, that data is sent to the delegate with a call to its `delineateDataFromReader` method, using the receiver, the data minus any terminator sequence, and the terminator sequence as parameters.  If the data ends with a terminator, even if the terminator could prefix longer ones, the terminator is separated from the data when the delegate is called.  If the terminator is absent or incomplete, all the data is sent together to the delegate and an empty sequence is sent as the terminator.
+     */
+    public func flushDataCallingDelegate(callDelegate: Bool) {
+        //
+    }
 
 }

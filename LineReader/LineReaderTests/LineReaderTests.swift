@@ -13,6 +13,35 @@ import Foundation
 
 class LineReaderTests: XCTestCase {
 
+    class PoemMatcher: LineReaderDelegate {
+
+        static let poem = [
+            "Mary had a little lamb,",  // by S. J. Hale, 1830
+            "His fleece was white as snow,",
+            "And everywhere that Mary went,",
+            "The lamb was sure to go."
+        ]
+
+        var linesCorrectlyRead = 0
+        var lines = [String]()
+        var terminators = [String]()
+
+        @objc func delineateDataFromReader(reader: LineReader, data: NSData, lineTerminator: NSData) {
+            self.lines.append(NSString(data: data, encoding: NSASCIIStringEncoding)!)
+            self.terminators.append(NSString(data: lineTerminator, encoding: NSASCIIStringEncoding)!)
+            if self.lines.count <= self.dynamicType.poem.count {
+                self.linesCorrectlyRead += self.lines.last! == self.dynamicType.poem[self.lines.count - 1] ? 1 : 0
+            }
+        }
+
+    }
+
+    static func concatenateData(data: NSData...) -> NSData {
+        let result = NSMutableData(length: 0)!
+        data.forEach { result.appendData($0) }
+        return result
+    }
+
     var dataLF: NSData?
     var dataCR: NSData?
     var dataCRLF: NSData?
@@ -87,6 +116,12 @@ class LineReaderTests: XCTestCase {
         XCTAssertNotNil(reader.parseTree.followerUsing(13))
         XCTAssertNotNil(reader.parseTree.followerUsing(13)?.followerUsing(10))
         XCTAssertEqual(reader.terminators, Set([dataCR!, dataCRLF!]))
+    }
+
+    func testReadingWithSingleLineTerminator() {
+        let reader = LineReader(lineTerminators: Set(arrayLiteral: dataLF!))
+        let matcher = PoemMatcher()
+        //read
     }
 
 }
