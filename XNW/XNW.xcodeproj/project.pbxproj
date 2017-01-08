@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794C11E20E76400872DFF /* MessageDocument.swift */; };
+		F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */; };
+		F34794CE1E21102800872DFF /* EditableMessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */; };
+		F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794D11E224DB100872DFF /* EditableMessageViewController.swift */; };
 		F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC22D1E1A1109000307D0 /* AppDelegate.swift */; };
-		F38AC2301E1A1109000307D0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC22F1E1A1109000307D0 /* ViewController.swift */; };
-		F38AC2321E1A1109000307D0 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2311E1A1109000307D0 /* Document.swift */; };
 		F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2331E1A110A000307D0 /* Assets.xcassets */; };
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
 		F38AC2421E1A110A000307D0 /* XNWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2411E1A110A000307D0 /* XNWTests.swift */; };
@@ -34,10 +36,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F34794C11E20E76400872DFF /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
+		F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageWindowController.swift; sourceTree = "<group>"; };
+		F34794CF1E21102800872DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditableMessageWindow.storyboard; sourceTree = "<group>"; };
+		F34794D11E224DB100872DFF /* EditableMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageViewController.swift; sourceTree = "<group>"; };
 		F38AC22A1E1A1109000307D0 /* XNW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XNW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC22D1E1A1109000307D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F38AC22F1E1A1109000307D0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F38AC2311E1A1109000307D0 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		F38AC2331E1A110A000307D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F38AC2361E1A110A000307D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F38AC2381E1A110A000307D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,10 +102,12 @@
 			isa = PBXGroup;
 			children = (
 				F38AC22D1E1A1109000307D0 /* AppDelegate.swift */,
-				F38AC22F1E1A1109000307D0 /* ViewController.swift */,
-				F38AC2311E1A1109000307D0 /* Document.swift */,
+				F34794C11E20E76400872DFF /* MessageDocument.swift */,
+				F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */,
+				F34794D11E224DB100872DFF /* EditableMessageViewController.swift */,
 				F38AC2331E1A110A000307D0 /* Assets.xcassets */,
 				F38AC2351E1A110A000307D0 /* Main.storyboard */,
+				F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */,
 				F38AC2381E1A110A000307D0 /* Info.plist */,
 			);
 			path = XNW;
@@ -232,6 +238,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F34794CE1E21102800872DFF /* EditableMessageWindow.storyboard in Resources */,
 				F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */,
 				F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */,
 			);
@@ -258,9 +265,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F38AC2301E1A1109000307D0 /* ViewController.swift in Sources */,
+				F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */,
+				F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */,
+				F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */,
 				F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */,
-				F38AC2321E1A1109000307D0 /* Document.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +304,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F34794CF1E21102800872DFF /* Base */,
+			);
+			name = EditableMessageWindow.storyboard;
+			sourceTree = "<group>";
+		};
 		F38AC2351E1A110A000307D0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -500,6 +516,7 @@
 				F38AC2531E1A110A000307D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F38AC2541E1A110A000307D0 /* Build configuration list for PBXNativeTarget "XNWTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +525,7 @@
 				F38AC2561E1A110A000307D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F38AC2571E1A110A000307D0 /* Build configuration list for PBXNativeTarget "XNWUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +534,7 @@
 				F38AC2591E1A110A000307D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

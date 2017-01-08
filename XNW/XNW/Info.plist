@@ -7,22 +7,18 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>u8msg</string>
-			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>DocumentType</string>
-			<key>CFBundleTypeOSTypes</key>
+			<string>UTF-8 E-Mail</string>
+			<key>LSItemContentTypes</key>
 			<array>
-				<string>????</string>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER).email</string>
 			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).Document</string>
+			<string>$(PRODUCT_MODULE_NAME).MessageDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -49,5 +45,48 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.data</string>
+				<string>public.utf8-email-message</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>International E-Mail Message</string>
+			<key>UTTypeIdentifier</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).email</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>u8msg</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>message/global</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.message</string>
+				<string>public.composite-content</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Internet Message Format, UTF-8 Extended</string>
+			<key>UTTypeIdentifier</key>
+			<string>public.utf8-email-message</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://www.iana.org/assignments/media-types/message/global</string>
+			<key>UTTypeTagSpecification</key>
+			<dict/>
+		</dict>
+	</array>
 </dict>
 </plist>
