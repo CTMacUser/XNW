@@ -11,6 +11,13 @@ import Cocoa
 
 class EditableMessageViewController: NSViewController {
 
+    // MARK: Properties
+
+    /// Whether the data can be changed through this view.
+    dynamic var isWritable: Bool = true
+
+    // MARK: Overrides
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.

@@ -15,6 +15,9 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
                         <rect key="contentRect" x="20" y="747" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
+                        <connections>
+                            <outlet property="delegate" destination="4UY-Cn-aSs" id="Gw9-3l-X6o"/>
+                        </connections>
                     </window>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="shouldCascadeWindows" value="YES"/>

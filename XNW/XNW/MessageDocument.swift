@@ -12,18 +12,52 @@ import Cocoa
 class MessageDocument: NSDocument {
 
     enum Names {
+        static let internationalEmailMessageUTI = Bundle.main.bundleIdentifier! + ".email"
     }
 
+    class TrialField: NSObject {
+        dynamic var name: String
+        dynamic var body: String
+
+        init(name: String, body: String) {
+            self.name = name
+            self.body = body
+        }
+    }
+    class TrialMessage: NSObject {
+        dynamic var header: [TrialField]
+        dynamic var body: String?
+
+        init(fields: TrialField..., body: String? = nil) {
+            self.header = fields
+            self.body = body
+        }
+    }
+
+    // MARK: Properties
+
+    dynamic var message: TrialMessage {
+        didSet {
+            Swift.print("Changed the message.")
+            for controller in self.windowControllers {
+                if let editingController = controller as? EditableMessageWindowController {
+                    editingController.message = message
+                }
+            }
+        }
+    }
+
+    // MARK: Overrides
+
     override init() {
+        self.message = TrialMessage(fields: TrialField(name: "Hello", body: "There"), TrialField(name: "Goodbye", body: "World"), body: "This is a test.")
         super.init()
         // Add your subclass-specific initialization here.
     }
 
     override func makeWindowControllers() {
         // Use the editable template for messages coming from files.
-        let storyboard = NSStoryboard(name: EditableMessageWindowController.Names.storyboard, bundle: nil)
-        let windowController = storyboard.instantiateInitialController() as! EditableMessageWindowController
-        self.addWindowController(windowController)
+        self.makeMessageEditWindow()
     }
 
     override func data(ofType typeName: String) throws -> Data {
@@ -41,6 +75,17 @@ class MessageDocument: NSDocument {
 
     override class func autosavesInPlace() -> Bool {
         return true
+    }
+
+    // MARK: Window Creation
+
+    /// Create a window (and controller) for editing messages.
+    func makeMessageEditWindow() {
+        let storyboard = NSStoryboard(name: EditableMessageWindowController.Names.storyboard, bundle: nil)
+        let controller = storyboard.instantiateInitialController() as! EditableMessageWindowController
+        controller.message = self.message
+        controller.isWritable = self.isInViewingMode
+        self.addWindowController(controller)
     }
 
 }
