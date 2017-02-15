@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="HeaderField" representedClassName=".RawHeaderField" syncable="YES">
+        <attribute name="body" attributeType="String" defaultValueString="example" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="X-New" syncable="YES"/>
+        <relationship name="message" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Message" inverseName="header" inverseEntity="Message" syncable="YES"/>
+    </entity>
+    <entity name="Message" representedClassName=".RawMessage" syncable="YES">
+        <attribute name="body" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="header" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HeaderField" inverseName="message" inverseEntity="HeaderField" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="HeaderField" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="Message" positionX="-54" positionY="9" width="128" height="75"/>
+    </elements>
+</model>

@@ -7,18 +7,56 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */; };
+		F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037151E523B01005A2CE2 /* String+Additions.swift */; };
+		F3186FAF1E4AA43800FE643F /* InternetMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; };
+		F3186FB81E4AA43800FE643F /* InternetMessages.h in Headers */ = {isa = PBXBuildFile; fileRef = F3186FA81E4AA43700FE643F /* InternetMessages.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F3186FBB1E4AA43800FE643F /* InternetMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; };
+		F3186FBC1E4AA43800FE643F /* InternetMessages.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3186FC51E4AA65900FE643F /* InternetMessageHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */; };
+		F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */; };
+		F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */; };
 		F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794C11E20E76400872DFF /* MessageDocument.swift */; };
 		F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */; };
 		F34794CE1E21102800872DFF /* EditableMessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */; };
 		F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794D11E224DB100872DFF /* EditableMessageViewController.swift */; };
+		F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */; };
+		F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */; };
+		F35CB42E1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB42A1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift */; };
+		F35CB42F1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB42B1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift */; };
+		F35CB4301E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB42C1E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift */; };
+		F35CB4331E4DA90600F69680 /* RawHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4321E4DA90600F69680 /* RawHeaderField.swift */; };
+		F383EC881E52E27C00F0ED2F /* StringAdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */; };
 		F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC22D1E1A1109000307D0 /* AppDelegate.swift */; };
 		F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2331E1A110A000307D0 /* Assets.xcassets */; };
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
 		F38AC2421E1A110A000307D0 /* XNWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2411E1A110A000307D0 /* XNWTests.swift */; };
 		F38AC24D1E1A110A000307D0 /* XNWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC24C1E1A110A000307D0 /* XNWUITests.swift */; };
+		F3A301B01E543A4700408612 /* OrderedSetArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		F3186FB01E4AA43800FE643F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F38AC2221E1A1109000307D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3186FA51E4AA43700FE643F;
+			remoteInfo = InternetMessages;
+		};
+		F3186FB21E4AA43800FE643F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F38AC2221E1A1109000307D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F38AC2291E1A1109000307D0;
+			remoteInfo = XNW;
+		};
+		F3186FB91E4AA43800FE643F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F38AC2221E1A1109000307D0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3186FA51E4AA43700FE643F;
+			remoteInfo = InternetMessages;
+		};
 		F38AC23E1E1A110A000307D0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F38AC2221E1A1109000307D0 /* Project object */;
@@ -35,11 +73,42 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F3186FC21E4AA43800FE643F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F3186FBC1E4AA43800FE643F /* InternetMessages.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageError.swift; sourceTree = "<group>"; };
+		F31037151E523B01005A2CE2 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		F3186FA61E4AA43700FE643F /* InternetMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InternetMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3186FA81E4AA43700FE643F /* InternetMessages.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InternetMessages.h; sourceTree = "<group>"; };
+		F3186FA91E4AA43700FE643F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3186FAE1E4AA43800FE643F /* InternetMessagesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InternetMessagesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3186FB71E4AA43800FE643F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderField.swift; sourceTree = "<group>"; };
+		F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageConstants.swift; sourceTree = "<group>"; };
+		F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderFieldTests.swift; sourceTree = "<group>"; };
 		F34794C11E20E76400872DFF /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
 		F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageWindowController.swift; sourceTree = "<group>"; };
 		F34794CF1E21102800872DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditableMessageWindow.storyboard; sourceTree = "<group>"; };
 		F34794D11E224DB100872DFF /* EditableMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageViewController.swift; sourceTree = "<group>"; };
+		F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RawMessagesModel.xcdatamodel; sourceTree = "<group>"; };
+		F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F35CB42A1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F35CB42B1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawHeaderField+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F35CB42C1E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawHeaderField+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F35CB4321E4DA90600F69680 /* RawHeaderField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawHeaderField.swift; sourceTree = "<group>"; };
+		F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringAdditionsTests.swift; sourceTree = "<group>"; };
 		F38AC22A1E1A1109000307D0 /* XNW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XNW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC22D1E1A1109000307D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F38AC2331E1A110A000307D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,13 +120,30 @@
 		F38AC2481E1A110A000307D0 /* XNWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC24C1E1A110A000307D0 /* XNWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNWUITests.swift; sourceTree = "<group>"; };
 		F38AC24E1E1A110A000307D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSetArrayValueTransformer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F3186FA21E4AA43700FE643F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3186FAB1E4AA43800FE643F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3186FAF1E4AA43800FE643F /* InternetMessages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38AC2271E1A1109000307D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3186FBB1E4AA43800FE643F /* InternetMessages.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,12 +164,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3186FA71E4AA43700FE643F /* InternetMessages */ = {
+			isa = PBXGroup;
+			children = (
+				F35CB4311E4DA7F800F69680 /* Generated Core Data */,
+				F3186FA81E4AA43700FE643F /* InternetMessages.h */,
+				F3186FA91E4AA43700FE643F /* Info.plist */,
+				F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */,
+				F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */,
+				F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */,
+				F35CB4321E4DA90600F69680 /* RawHeaderField.swift */,
+				F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */,
+				F31037151E523B01005A2CE2 /* String+Additions.swift */,
+			);
+			path = InternetMessages;
+			sourceTree = "<group>";
+		};
+		F3186FB41E4AA43800FE643F /* InternetMessagesTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3186FB71E4AA43800FE643F /* Info.plist */,
+				F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */,
+				F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */,
+			);
+			path = InternetMessagesTests;
+			sourceTree = "<group>";
+		};
+		F35CB4311E4DA7F800F69680 /* Generated Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */,
+				F35CB42A1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift */,
+				F35CB42B1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift */,
+				F35CB42C1E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift */,
+			);
+			name = "Generated Core Data";
+			sourceTree = "<group>";
+		};
 		F38AC2211E1A1109000307D0 = {
 			isa = PBXGroup;
 			children = (
 				F38AC22C1E1A1109000307D0 /* XNW */,
+				F3186FA71E4AA43700FE643F /* InternetMessages */,
 				F38AC2401E1A110A000307D0 /* XNWTests */,
 				F38AC24B1E1A110A000307D0 /* XNWUITests */,
+				F3186FB41E4AA43800FE643F /* InternetMessagesTests */,
 				F38AC22B1E1A1109000307D0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +219,8 @@
 				F38AC22A1E1A1109000307D0 /* XNW.app */,
 				F38AC23D1E1A110A000307D0 /* XNWTests.xctest */,
 				F38AC2481E1A110A000307D0 /* XNWUITests.xctest */,
+				F3186FA61E4AA43700FE643F /* InternetMessages.framework */,
+				F3186FAE1E4AA43800FE643F /* InternetMessagesTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -105,6 +232,7 @@
 				F34794C11E20E76400872DFF /* MessageDocument.swift */,
 				F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */,
 				F34794D11E224DB100872DFF /* EditableMessageViewController.swift */,
+				F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */,
 				F38AC2331E1A110A000307D0 /* Assets.xcassets */,
 				F38AC2351E1A110A000307D0 /* Main.storyboard */,
 				F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */,
@@ -133,7 +261,55 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		F3186FA31E4AA43700FE643F /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3186FB81E4AA43800FE643F /* InternetMessages.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		F3186FA51E4AA43700FE643F /* InternetMessages */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3186FC11E4AA43800FE643F /* Build configuration list for PBXNativeTarget "InternetMessages" */;
+			buildPhases = (
+				F3186FA11E4AA43700FE643F /* Sources */,
+				F3186FA21E4AA43700FE643F /* Frameworks */,
+				F3186FA31E4AA43700FE643F /* Headers */,
+				F3186FA41E4AA43700FE643F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InternetMessages;
+			productName = InternetMessages;
+			productReference = F3186FA61E4AA43700FE643F /* InternetMessages.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F3186FAD1E4AA43800FE643F /* InternetMessagesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3186FC31E4AA43800FE643F /* Build configuration list for PBXNativeTarget "InternetMessagesTests" */;
+			buildPhases = (
+				F3186FAA1E4AA43800FE643F /* Sources */,
+				F3186FAB1E4AA43800FE643F /* Frameworks */,
+				F3186FAC1E4AA43800FE643F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3186FB11E4AA43800FE643F /* PBXTargetDependency */,
+				F3186FB31E4AA43800FE643F /* PBXTargetDependency */,
+			);
+			name = InternetMessagesTests;
+			productName = InternetMessagesTests;
+			productReference = F3186FAE1E4AA43800FE643F /* InternetMessagesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		F38AC2291E1A1109000307D0 /* XNW */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F38AC2511E1A110A000307D0 /* Build configuration list for PBXNativeTarget "XNW" */;
@@ -141,10 +317,12 @@
 				F38AC2261E1A1109000307D0 /* Sources */,
 				F38AC2271E1A1109000307D0 /* Frameworks */,
 				F38AC2281E1A1109000307D0 /* Resources */,
+				F3186FC21E4AA43800FE643F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F3186FBA1E4AA43800FE643F /* PBXTargetDependency */,
 			);
 			name = XNW;
 			productName = XNW;
@@ -197,6 +375,16 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Daryle Walker";
 				TargetAttributes = {
+					F3186FA51E4AA43700FE643F = {
+						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
+						ProvisioningStyle = Automatic;
+					};
+					F3186FAD1E4AA43800FE643F = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F38AC2291E1A1109000307D0;
+					};
 					F38AC2291E1A1109000307D0 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -229,11 +417,27 @@
 				F38AC2291E1A1109000307D0 /* XNW */,
 				F38AC23C1E1A110A000307D0 /* XNWTests */,
 				F38AC2471E1A110A000307D0 /* XNWUITests */,
+				F3186FA51E4AA43700FE643F /* InternetMessages */,
+				F3186FAD1E4AA43800FE643F /* InternetMessagesTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		F3186FA41E4AA43700FE643F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3186FAC1E4AA43800FE643F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38AC2281E1A1109000307D0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,10 +465,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		F3186FA11E4AA43700FE643F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */,
+				F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */,
+				F35CB4301E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift in Sources */,
+				F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */,
+				F35CB42F1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift in Sources */,
+				F3186FC51E4AA65900FE643F /* InternetMessageHeaderField.swift in Sources */,
+				F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */,
+				F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */,
+				F35CB4331E4DA90600F69680 /* RawHeaderField.swift in Sources */,
+				F35CB42E1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3186FAA1E4AA43800FE643F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */,
+				F383EC881E52E27C00F0ED2F /* StringAdditionsTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F38AC2261E1A1109000307D0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A301B01E543A4700408612 /* OrderedSetArrayValueTransformer.swift in Sources */,
 				F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */,
 				F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */,
 				F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */,
@@ -291,6 +522,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		F3186FB11E4AA43800FE643F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3186FA51E4AA43700FE643F /* InternetMessages */;
+			targetProxy = F3186FB01E4AA43800FE643F /* PBXContainerItemProxy */;
+		};
+		F3186FB31E4AA43800FE643F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F38AC2291E1A1109000307D0 /* XNW */;
+			targetProxy = F3186FB21E4AA43800FE643F /* PBXContainerItemProxy */;
+		};
+		F3186FBA1E4AA43800FE643F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3186FA51E4AA43700FE643F /* InternetMessages */;
+			targetProxy = F3186FB91E4AA43800FE643F /* PBXContainerItemProxy */;
+		};
 		F38AC23F1E1A110A000307D0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = F38AC2291E1A1109000307D0 /* XNW */;
@@ -323,6 +569,83 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F3186FBD1E4AA43800FE643F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = InternetMessages/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ctmacuser.InternetMessages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F3186FBE1E4AA43800FE643F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = InternetMessages/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ctmacuser.InternetMessages;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F3186FBF1E4AA43800FE643F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = InternetMessagesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ctmacuser.InternetMessagesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XNW.app/Contents/MacOS/XNW";
+			};
+			name = Debug;
+		};
+		F3186FC01E4AA43800FE643F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = InternetMessagesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.ctmacuser.InternetMessagesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/XNW.app/Contents/MacOS/XNW";
+			};
+			name = Release;
+		};
 		F38AC24F1E1A110A000307D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -416,6 +739,7 @@
 		F38AC2521E1A110A000307D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = XNW/Info.plist;
@@ -429,6 +753,7 @@
 		F38AC2531E1A110A000307D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = XNW/Info.plist;
@@ -500,6 +825,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F3186FC11E4AA43800FE643F /* Build configuration list for PBXNativeTarget "InternetMessages" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3186FBD1E4AA43800FE643F /* Debug */,
+				F3186FBE1E4AA43800FE643F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3186FC31E4AA43800FE643F /* Build configuration list for PBXNativeTarget "InternetMessagesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3186FBF1E4AA43800FE643F /* Debug */,
+				F3186FC01E4AA43800FE643F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F38AC2251E1A1109000307D0 /* Build configuration list for PBXProject "XNW" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -537,6 +880,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */,
+			);
+			currentVersion = F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */;
+			path = RawMessagesModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F38AC2221E1A1109000307D0 /* Project object */;
 }

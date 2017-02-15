@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4UY-Cn-aSs">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="4UY-Cn-aSs">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -133,7 +133,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="qDM-8c-lAB">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="d71-nA-lHU">
@@ -175,15 +175,19 @@
                     </view>
                 </viewController>
                 <customObject id="YxE-7z-ZAR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="XNW.MessageDocument.TrialMessage" id="N31-9x-QBc">
+                <objectController objectClassName="InternetMessages.RawMessage" id="N31-9x-QBc">
                     <connections>
-                        <binding destination="GcU-UQ-JmD" name="contentObject" keyPath="representedObject" id="PJd-xQ-fif"/>
                         <binding destination="GcU-UQ-JmD" name="editable" keyPath="isWritable" id="OOq-sd-OXa"/>
+                        <binding destination="GcU-UQ-JmD" name="contentObject" keyPath="representedObject" id="PJd-xQ-fif"/>
                     </connections>
                 </objectController>
-                <arrayController objectClassName="XNW.MessageDocument.TrialField" preservesSelection="NO" avoidsEmptySelection="NO" id="UIj-mI-NxH">
+                <arrayController objectClassName="InternetMessages.RawHeaderField" preservesSelection="NO" avoidsEmptySelection="NO" id="UIj-mI-NxH">
                     <connections>
-                        <binding destination="N31-9x-QBc" name="contentArray" keyPath="selection.header" id="smG-2w-m15"/>
+                        <binding destination="N31-9x-QBc" name="contentArray" keyPath="selection.header" id="ywY-kw-bKP">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">OrderedSetArrayValueTransformer</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </arrayController>
             </objects>
