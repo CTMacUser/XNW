@@ -21,11 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
-    func applicationWillFinishLaunching(_ notification: Notification) {
-        // This won't be set in time if in `applicationDidFinishLaunching`.
-        ValueTransformer.setValueTransformer(OrderedSetArrayValueTransformer(), forName: OrderedSetArrayValueTransformer.name)
-    }
-
 
 }
 

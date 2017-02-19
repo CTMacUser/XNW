@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F309A7FE1E55A42600733293 /* MessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F309A7FD1E55A42600733293 /* MessageWindow.storyboard */; };
+		F309A8001E55A65400733293 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309A7FF1E55A65400733293 /* MessageViewController.swift */; };
 		F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */; };
 		F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037151E523B01005A2CE2 /* String+Additions.swift */; };
 		F3186FAF1E4AA43800FE643F /* InternetMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; };
@@ -17,9 +19,6 @@
 		F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */; };
 		F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */; };
 		F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794C11E20E76400872DFF /* MessageDocument.swift */; };
-		F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */; };
-		F34794CE1E21102800872DFF /* EditableMessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */; };
-		F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794D11E224DB100872DFF /* EditableMessageViewController.swift */; };
 		F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */; };
 		F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */; };
 		F35CB42E1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB42A1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift */; };
@@ -32,7 +31,7 @@
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
 		F38AC2421E1A110A000307D0 /* XNWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2411E1A110A000307D0 /* XNWTests.swift */; };
 		F38AC24D1E1A110A000307D0 /* XNWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC24C1E1A110A000307D0 /* XNWUITests.swift */; };
-		F3A301B01E543A4700408612 /* OrderedSetArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */; };
+		F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +87,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F309A7FD1E55A42600733293 /* MessageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageWindow.storyboard; sourceTree = "<group>"; };
+		F309A7FF1E55A65400733293 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageError.swift; sourceTree = "<group>"; };
 		F31037151E523B01005A2CE2 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		F3186FA61E4AA43700FE643F /* InternetMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InternetMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,9 +100,6 @@
 		F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageConstants.swift; sourceTree = "<group>"; };
 		F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderFieldTests.swift; sourceTree = "<group>"; };
 		F34794C11E20E76400872DFF /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
-		F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageWindowController.swift; sourceTree = "<group>"; };
-		F34794CF1E21102800872DFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/EditableMessageWindow.storyboard; sourceTree = "<group>"; };
-		F34794D11E224DB100872DFF /* EditableMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditableMessageViewController.swift; sourceTree = "<group>"; };
 		F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RawMessagesModel.xcdatamodel; sourceTree = "<group>"; };
 		F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F35CB42A1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -120,7 +118,7 @@
 		F38AC2481E1A110A000307D0 /* XNWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC24C1E1A110A000307D0 /* XNWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNWUITests.swift; sourceTree = "<group>"; };
 		F38AC24E1E1A110A000307D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSetArrayValueTransformer.swift; sourceTree = "<group>"; };
+		F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +172,7 @@
 				F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */,
 				F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */,
 				F35CB4321E4DA90600F69680 /* RawHeaderField.swift */,
+				F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */,
 				F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */,
 				F31037151E523B01005A2CE2 /* String+Additions.swift */,
 			);
@@ -230,12 +229,10 @@
 			children = (
 				F38AC22D1E1A1109000307D0 /* AppDelegate.swift */,
 				F34794C11E20E76400872DFF /* MessageDocument.swift */,
-				F34794CA1E210FBB00872DFF /* EditableMessageWindowController.swift */,
-				F34794D11E224DB100872DFF /* EditableMessageViewController.swift */,
-				F3A301AF1E543A4700408612 /* OrderedSetArrayValueTransformer.swift */,
+				F309A7FF1E55A65400733293 /* MessageViewController.swift */,
 				F38AC2331E1A110A000307D0 /* Assets.xcassets */,
 				F38AC2351E1A110A000307D0 /* Main.storyboard */,
-				F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */,
+				F309A7FD1E55A42600733293 /* MessageWindow.storyboard */,
 				F38AC2381E1A110A000307D0 /* Info.plist */,
 			);
 			path = XNW;
@@ -442,7 +439,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F34794CE1E21102800872DFF /* EditableMessageWindow.storyboard in Resources */,
+				F309A7FE1E55A42600733293 /* MessageWindow.storyboard in Resources */,
 				F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */,
 				F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */,
 			);
@@ -473,6 +470,7 @@
 				F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */,
 				F35CB4301E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift in Sources */,
 				F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */,
+				F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */,
 				F35CB42F1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift in Sources */,
 				F3186FC51E4AA65900FE643F /* InternetMessageHeaderField.swift in Sources */,
 				F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */,
@@ -495,10 +493,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3A301B01E543A4700408612 /* OrderedSetArrayValueTransformer.swift in Sources */,
-				F34794D21E224DB100872DFF /* EditableMessageViewController.swift in Sources */,
 				F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */,
-				F34794CB1E210FBB00872DFF /* EditableMessageWindowController.swift in Sources */,
+				F309A8001E55A65400733293 /* MessageViewController.swift in Sources */,
 				F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,14 +546,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F34794D01E21102800872DFF /* EditableMessageWindow.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F34794CF1E21102800872DFF /* Base */,
-			);
-			name = EditableMessageWindow.storyboard;
-			sourceTree = "<group>";
-		};
 		F38AC2351E1A110A000307D0 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
