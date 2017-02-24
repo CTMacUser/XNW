@@ -58,7 +58,7 @@ class MessageDocument: NSDocument {
         }
 
         // Finish preparing the main context and seed the root message object.
-        let mainContext = container.viewContext
+        let mainContext = self.container.viewContext
         mainContext.performAndWait {
             self.message = RawMessage(context: mainContext)
             do {
@@ -77,9 +77,23 @@ class MessageDocument: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        // Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-        // You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        // Track where the message data can be found now so future main-thread actions can't change it.
+        let messageID = self.message.objectID
+        let backgroundContext = self.container.newBackgroundContext()
+        self.unblockUserInteraction()
+
+        // Extract the raw data from the message.
+        switch typeName {
+        case Names.internationalEmailMessageUTI:
+            var messageData: Data?
+            backgroundContext.performAndWait {
+                let backgroundMessage = backgroundContext.object(with: messageID) as! RawMessage
+                messageData = backgroundMessage.messageAsExternalData
+            }
+            return messageData!
+        default:
+            throw CocoaError(.fileWriteUnknown)
+        }
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
@@ -91,6 +105,28 @@ class MessageDocument: NSDocument {
 
     override class func autosavesInPlace() -> Bool {
         return true
+    }
+
+    override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
+        switch typeName {
+        case Names.internationalEmailMessageUTI:
+            return true
+        default:
+            return super.canAsynchronouslyWrite(to: url, ofType: typeName, for: saveOperation)
+        }
+    }
+
+    override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: @escaping (Error?) -> Void) {
+        // Save the message data to the store so any background contexts can read the data later.
+        do {
+            try self.container.viewContext.save()
+        } catch {
+            completionHandler(error)
+            return
+        }
+
+        // Do the usual code, possibly even use a background thread.
+        super.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
     }
 
 }

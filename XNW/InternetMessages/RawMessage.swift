@@ -68,4 +68,45 @@ extension RawMessage {
         return [#keyPath(RawMessage.header)]
     }
 
+    // MARK: Validation
+
+    /// KVC validation routine for the `header` property.
+    public func validateHeader(value: AutoreleasingUnsafeMutablePointer<AnyObject?>) throws {
+        guard let value = value.pointee else { return }
+
+        let header = value as! NSOrderedSet
+        if let error = RawMessage.invalidationsOn(header: header, flagTooLongForTransmission: true, flagHasInternationalCharacters: !self.acceptUnicode).first {
+            throw error
+        }
+    }
+
+    /// KVC validation routine for the `body` property.
+    public func validateBody(value: AutoreleasingUnsafeMutablePointer<AnyObject?>) throws {
+        guard let value = value.pointee else { return }
+        guard let body = value as? String else { return }
+
+        if let error = RawMessage.invalidationsOn(body: body, flagTooLongForTransmission: true, flagHasInternationalCharacters: !self.acceptUnicode).first {
+            throw error
+        }
+    }
+
+    // Validate the primary data: header and body.
+    private func validateHeaderAndBody() throws {
+        if let error = self.invalidations(flagTooLongForTransmission: true, flagHasInternationalCharacters: !self.acceptUnicode).first {
+            throw error
+        }
+    }
+
+    // MARK: Overrides
+
+    public override func validateForInsert() throws {
+        try super.validateForInsert()
+        try self.validateHeaderAndBody()
+    }
+
+    public override func validateForUpdate() throws {
+        try super.validateForUpdate()
+        try self.validateHeaderAndBody()
+    }
+
 }

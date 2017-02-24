@@ -36,5 +36,7 @@ public enum InternetMessageConstants {
     public static let ftext = CharacterSet(charactersIn: "\u{21}"..."\u{39}").union(CharacterSet(charactersIn: "\u{3B}"..."\u{7E}"))  // There's a bug in `CharacterSet` preventing `vchar.subtracting(CharacterSet(charactersIn: ":"))` from working
     /// Characters that are banned from non-obsolete unstructured header field bodies, including the line-breaking characters only present during line-folding.  Implied from RFC 5322, section 3.2.5.
     public static let bannedFromUnstructured = CharacterSet(charactersIn: "\0"..."\u{8}").union(CharacterSet(charactersIn: "\u{A}"..."\u{1F}")).union(CharacterSet(charactersIn: "\u{7F}"))  // The bug keeps `ascii.subtracting(vchar.union(wsp))` from working too
+    /// Characters that are banned from non-obsolete message bodies, assuming LF-only line breaks.  (A carriage-return would be OK only if it preceeded a line-feed.)  Implied from RFC 5322, section 3.5.
+    public static let bannedFromBody = CharacterSet(charactersIn: "\0\r")
 
 }

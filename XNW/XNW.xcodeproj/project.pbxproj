@@ -31,6 +31,8 @@
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
 		F38AC2421E1A110A000307D0 /* XNWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2411E1A110A000307D0 /* XNWTests.swift */; };
 		F38AC24D1E1A110A000307D0 /* XNWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC24C1E1A110A000307D0 /* XNWUITests.swift */; };
+		F3C8876D1E5A85CF007391A1 /* InternetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */; };
+		F3C8876F1E5CD719007391A1 /* InternetMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */; };
 		F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */; };
 /* End PBXBuildFile section */
 
@@ -118,6 +120,8 @@
 		F38AC2481E1A110A000307D0 /* XNWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC24C1E1A110A000307D0 /* XNWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNWUITests.swift; sourceTree = "<group>"; };
 		F38AC24E1E1A110A000307D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessage.swift; sourceTree = "<group>"; };
+		F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageTests.swift; sourceTree = "<group>"; };
 		F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,11 +173,12 @@
 				F3186FA81E4AA43700FE643F /* InternetMessages.h */,
 				F3186FA91E4AA43700FE643F /* Info.plist */,
 				F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */,
+				F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */,
 				F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */,
+				F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */,
 				F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */,
 				F35CB4321E4DA90600F69680 /* RawHeaderField.swift */,
 				F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */,
-				F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */,
 				F31037151E523B01005A2CE2 /* String+Additions.swift */,
 			);
 			path = InternetMessages;
@@ -185,6 +190,7 @@
 				F3186FB71E4AA43800FE643F /* Info.plist */,
 				F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */,
 				F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */,
+				F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */,
 			);
 			path = InternetMessagesTests;
 			sourceTree = "<group>";
@@ -472,6 +478,7 @@
 				F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */,
 				F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */,
 				F35CB42F1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift in Sources */,
+				F3C8876D1E5A85CF007391A1 /* InternetMessage.swift in Sources */,
 				F3186FC51E4AA65900FE643F /* InternetMessageHeaderField.swift in Sources */,
 				F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */,
 				F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */,
@@ -484,6 +491,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C8876F1E5CD719007391A1 /* InternetMessageTests.swift in Sources */,
 				F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */,
 				F383EC881E52E27C00F0ED2F /* StringAdditionsTests.swift in Sources */,
 			);

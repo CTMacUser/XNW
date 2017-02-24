@@ -55,3 +55,9 @@ extension RawMessage {
     @NSManaged public func removeFromHeader(_ values: NSOrderedSet)
 
 }
+
+// This and the following lines were added.
+
+extension RawMessage: MutableInternetMessage {
+    // There's a linker error unless this declaration is in the same file where its needed components are defined.
+}

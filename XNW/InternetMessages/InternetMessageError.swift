@@ -27,4 +27,13 @@ public enum InternetMessageError: Int, Error {
     /// A header field's text; name, separating colon, and body; can't have terms that prevent line-wrapping before 998 octets have spanned.  Either the name is at least that long and/or the body has a term combined with its preceding space that is too long.
     case headerFieldCouldNotBeWrappedForTransmission
 
+    /// Message bodies can't have raw CR for internal representations that use only-LF for line breaks.
+    case bodyHasRawCarriageReturn
+    /// Message bodies can't have embedded NULs
+    case bodyHasEmbeddedNul
+    /// Message bodies can't directly contain post-ASCII Unicode characters if that option is set.
+    case bodyHasInvalidUnicodeCharacters
+    /// Message bodies can't have lines longer than 998 octets.
+    case bodyHasLineTooLongForTransmission
+
 }
