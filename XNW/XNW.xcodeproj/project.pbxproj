@@ -18,6 +18,8 @@
 		F3186FC51E4AA65900FE643F /* InternetMessageHeaderField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */; };
 		F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */; };
 		F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */; };
+		F337CD4F1E653B0A00C0379F /* InternetMessageLineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337CD4E1E653B0A00C0379F /* InternetMessageLineCategory.swift */; };
+		F337CD511E653B6E00C0379F /* InternetMessageLineCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337CD501E653B6E00C0379F /* InternetMessageLineCategoryTests.swift */; };
 		F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794C11E20E76400872DFF /* MessageDocument.swift */; };
 		F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */; };
 		F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */; };
@@ -31,6 +33,10 @@
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
 		F38AC2421E1A110A000307D0 /* XNWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC2411E1A110A000307D0 /* XNWTests.swift */; };
 		F38AC24D1E1A110A000307D0 /* XNWUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC24C1E1A110A000307D0 /* XNWUITests.swift */; };
+		F39365A31E677A9200CD9532 /* InternetMessageReadingOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39365A21E677A9200CD9532 /* InternetMessageReadingOperation.swift */; };
+		F39A19DD1E6018400058C727 /* LineReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A19DC1E6018400058C727 /* LineReader.swift */; };
+		F39A19DF1E601D760058C727 /* LineReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A19DE1E601D760058C727 /* LineReaderTests.swift */; };
+		F3A41C951E67D31200D14B0B /* InternetMessageReadingOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A41C941E67D31200D14B0B /* InternetMessageReadingOperationTests.swift */; };
 		F3C8876D1E5A85CF007391A1 /* InternetMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */; };
 		F3C8876F1E5CD719007391A1 /* InternetMessageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */; };
 		F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */; };
@@ -101,6 +107,8 @@
 		F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderField.swift; sourceTree = "<group>"; };
 		F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageConstants.swift; sourceTree = "<group>"; };
 		F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderFieldTests.swift; sourceTree = "<group>"; };
+		F337CD4E1E653B0A00C0379F /* InternetMessageLineCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageLineCategory.swift; sourceTree = "<group>"; };
+		F337CD501E653B6E00C0379F /* InternetMessageLineCategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageLineCategoryTests.swift; sourceTree = "<group>"; };
 		F34794C11E20E76400872DFF /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
 		F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RawMessagesModel.xcdatamodel; sourceTree = "<group>"; };
 		F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -120,6 +128,10 @@
 		F38AC2481E1A110A000307D0 /* XNWUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XNWUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC24C1E1A110A000307D0 /* XNWUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XNWUITests.swift; sourceTree = "<group>"; };
 		F38AC24E1E1A110A000307D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F39365A21E677A9200CD9532 /* InternetMessageReadingOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageReadingOperation.swift; sourceTree = "<group>"; };
+		F39A19DC1E6018400058C727 /* LineReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReader.swift; sourceTree = "<group>"; };
+		F39A19DE1E601D760058C727 /* LineReaderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineReaderTests.swift; sourceTree = "<group>"; };
+		F3A41C941E67D31200D14B0B /* InternetMessageReadingOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageReadingOperationTests.swift; sourceTree = "<group>"; };
 		F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessage.swift; sourceTree = "<group>"; };
 		F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageTests.swift; sourceTree = "<group>"; };
 		F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawMessage.swift; sourceTree = "<group>"; };
@@ -174,8 +186,11 @@
 				F3186FA91E4AA43700FE643F /* Info.plist */,
 				F3186FC41E4AA65900FE643F /* InternetMessageHeaderField.swift */,
 				F3C8876C1E5A85CF007391A1 /* InternetMessage.swift */,
+				F337CD4E1E653B0A00C0379F /* InternetMessageLineCategory.swift */,
 				F3186FC61E4AD77D00FE643F /* InternetMessageConstants.swift */,
 				F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */,
+				F39365A21E677A9200CD9532 /* InternetMessageReadingOperation.swift */,
+				F39A19DC1E6018400058C727 /* LineReader.swift */,
 				F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */,
 				F35CB4321E4DA90600F69680 /* RawHeaderField.swift */,
 				F3D9B0DA1E59727300C32DF6 /* RawMessage.swift */,
@@ -191,6 +206,9 @@
 				F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */,
 				F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */,
 				F3C8876E1E5CD718007391A1 /* InternetMessageTests.swift */,
+				F39A19DE1E601D760058C727 /* LineReaderTests.swift */,
+				F337CD501E653B6E00C0379F /* InternetMessageLineCategoryTests.swift */,
+				F3A41C941E67D31200D14B0B /* InternetMessageReadingOperationTests.swift */,
 			);
 			path = InternetMessagesTests;
 			sourceTree = "<group>";
@@ -475,6 +493,8 @@
 				F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */,
 				F3186FC71E4AD77D00FE643F /* InternetMessageConstants.swift in Sources */,
 				F35CB4301E4DA74600F69680 /* RawHeaderField+CoreDataProperties.swift in Sources */,
+				F39A19DD1E6018400058C727 /* LineReader.swift in Sources */,
+				F337CD4F1E653B0A00C0379F /* InternetMessageLineCategory.swift in Sources */,
 				F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */,
 				F3D9B0DB1E59727300C32DF6 /* RawMessage.swift in Sources */,
 				F35CB42F1E4DA74600F69680 /* RawHeaderField+CoreDataClass.swift in Sources */,
@@ -483,6 +503,7 @@
 				F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */,
 				F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */,
 				F35CB4331E4DA90600F69680 /* RawHeaderField.swift in Sources */,
+				F39365A31E677A9200CD9532 /* InternetMessageReadingOperation.swift in Sources */,
 				F35CB42E1E4DA74600F69680 /* RawMessage+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,7 +513,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3C8876F1E5CD719007391A1 /* InternetMessageTests.swift in Sources */,
+				F337CD511E653B6E00C0379F /* InternetMessageLineCategoryTests.swift in Sources */,
 				F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */,
+				F3A41C951E67D31200D14B0B /* InternetMessageReadingOperationTests.swift in Sources */,
+				F39A19DF1E601D760058C727 /* LineReaderTests.swift in Sources */,
 				F383EC881E52E27C00F0ED2F /* StringAdditionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

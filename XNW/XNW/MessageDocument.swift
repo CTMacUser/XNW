@@ -77,30 +77,69 @@ class MessageDocument: NSDocument {
     }
 
     override func data(ofType typeName: String) throws -> Data {
-        // Track where the message data can be found now so future main-thread actions can't change it.
-        let messageID = self.message.objectID
+        // Get a copy of the message before any main-thread actions could change it.
+        var backgroundMessage: RawMessage!
         let backgroundContext = self.container.newBackgroundContext()
+        backgroundContext.performAndWait {
+            backgroundMessage = backgroundContext.object(with: self.message.objectID) as! RawMessage
+        }
         self.unblockUserInteraction()
 
+        // Do the type check after unlocking the main thread; don't risk deadlocking the app.
+        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        guard isTypeEmail else { throw CocoaError(.fileWriteUnknown) }
+
         // Extract the raw data from the message.
-        switch typeName {
-        case Names.internationalEmailMessageUTI:
-            var messageData: Data?
-            backgroundContext.performAndWait {
-                let backgroundMessage = backgroundContext.object(with: messageID) as! RawMessage
-                messageData = backgroundMessage.messageAsExternalData
-            }
-            return messageData!
-        default:
-            throw CocoaError(.fileWriteUnknown)
+        var messageData: Data?
+        backgroundContext.performAndWait {
+            messageData = backgroundMessage.messageAsExternalData
         }
+        return messageData!
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning false.
-        // You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-        // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        guard isTypeEmail else { throw CocoaError(.fileReadUnknown) }
+
+        // Parse the incoming data.
+        let operationalMessage = InternetMessageReadingOperation(data: data)
+        operationalMessage.start()
+        assert(operationalMessage.isFinished)
+        guard !operationalMessage.isCancelled else { throw CocoaError(.userCancelled) }
+
+        // Create a document message object from the operation message object.
+        var backgroundMessage: RawMessage!
+        var backgroundError: Error?
+        let backgroundContext = self.container.newBackgroundContext()
+        backgroundContext.performAndWait {
+            backgroundMessage = RawMessage(context: backgroundContext)
+            for field in operationalMessage.header {
+                let fieldObject = RawHeaderField(context: backgroundContext)
+                fieldObject.name = field.name
+                fieldObject.body = field.body
+                fieldObject.message = backgroundMessage
+            }
+            backgroundMessage.body = operationalMessage.body
+
+            do {
+                try backgroundContext.save()
+            } catch {
+                backgroundError = error
+            }
+        }
+        guard backgroundError == nil else { throw backgroundError! }
+
+        // Replace the current message with a copy of the new one.
+        let mainContext = self.container.viewContext
+        mainContext.performAndWait {
+            self.undoManager?.disableUndoRegistration()
+            defer { self.undoManager?.enableUndoRegistration() }
+
+            let oldMessage = self.message
+            self.message = mainContext.object(with: backgroundMessage.objectID) as! RawMessage
+            mainContext.delete(oldMessage!)
+            try! mainContext.save()  // Can't really recover; the new message is already in.
+        }
     }
 
     override class func autosavesInPlace() -> Bool {
@@ -108,22 +147,36 @@ class MessageDocument: NSDocument {
     }
 
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
-        switch typeName {
-        case Names.internationalEmailMessageUTI:
+        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        if isTypeEmail {
             return true
-        default:
+        } else {
             return super.canAsynchronouslyWrite(to: url, ofType: typeName, for: saveOperation)
+        }
+    }
+
+    override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
+        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        if isTypeEmail {
+            return true
+        } else {
+            return super.canConcurrentlyReadDocuments(ofType: typeName)
         }
     }
 
     override func save(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType, completionHandler: @escaping (Error?) -> Void) {
         // Save the message data to the store so any background contexts can read the data later.
-        do {
-            try self.container.viewContext.save()
-        } catch {
-            completionHandler(error)
-            return
+        let mainContext = self.container.viewContext
+        var gotError = false
+        mainContext.performAndWait {
+            do {
+                try mainContext.save()
+            } catch {
+                completionHandler(error)
+                gotError = true
+            }
         }
+        guard !gotError else { return }
 
         // Do the usual code, possibly even use a background thread.
         super.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
@@ -142,27 +195,6 @@ extension MessageDocument {
 
         // Recreate the algorithm from super, since Swift's rules prevent me from calling it directly.
         self.fileType = typeName
-
-        // Add some sample data
-        self.undoManager?.disableUndoRegistration()
-        defer {
-            self.undoManager?.enableUndoRegistration()
-        }
-        let mainContext = container.viewContext
-        mainContext.performAndWait {
-            let field1 = RawHeaderField(context: mainContext)
-            field1.name = "Hello"
-            field1.body = "World"
-            self.message.addToHeader(field1)
-
-            let field2 = RawHeaderField(context: mainContext)
-            field2.name = "Bye"
-            field2.body = "planet"
-            self.message.addToHeader(field2)
-
-            self.message.body = "Is this an accurate test?"
-        }
-        try mainContext.save()
     }
 
     /// Recreate the initializer with a URL and type name, plus extra error-checking from `init`.
