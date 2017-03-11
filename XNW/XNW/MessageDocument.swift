@@ -15,6 +15,7 @@ class MessageDocument: NSDocument {
 
     enum Names {
         static let internationalEmailMessageUTI = Bundle.main.bundleIdentifier! + ".email"
+        static let traditionalEmailMessageUTI = "com.apple.mail.email"
         static let messageModelBundleResource = "RawMessagesModel"
     }
 
@@ -86,20 +87,42 @@ class MessageDocument: NSDocument {
         self.unblockUserInteraction()
 
         // Do the type check after unlocking the main thread; don't risk deadlocking the app.
-        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        guard isTypeEmail else { throw CocoaError(.fileWriteUnknown) }
+        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        let isTypeRTF = UTTypeConformsTo(typeName as CFString, kUTTypeRTF)
+        guard isTypeIntlEmail || isTypeRTF else { throw CocoaError(.fileWriteUnknown) }
 
         // Extract the raw data from the message.
         var messageData: Data?
+        var backgroundError: Error?
         backgroundContext.performAndWait {
-            messageData = backgroundMessage.messageAsExternalData
+            if isTypeIntlEmail {
+                messageData = backgroundMessage.messageAsExternalData
+            }
+            if isTypeRTF {
+                let operation = ConvertMessageToAttributedStringOperation(message: backgroundMessage)
+                operation.start()
+                if operation.isCancelled {
+                    backgroundError = CocoaError(.userCancelled)
+                } else {
+                    do {
+                        let string = operation.messageString
+                        try messageData = string.data(from: NSMakeRange(0, string.length), documentAttributes: [NSDocumentTypeDocumentAttribute: NSRTFTextDocumentType, NSCharacterEncodingDocumentAttribute: String.Encoding.utf8])
+                    } catch {
+                        backgroundError = error
+                    }
+                }
+            }
+        }
+        if let error = backgroundError {
+            throw error
         }
         return messageData!
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        guard isTypeEmail else { throw CocoaError(.fileReadUnknown) }
+        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        let isTypeClassicEmail = UTTypeConformsTo(typeName as CFString, Names.traditionalEmailMessageUTI as CFString)
+        guard isTypeIntlEmail || isTypeClassicEmail else { throw CocoaError(.fileReadUnknown) }
 
         // Parse the incoming data.
         let operationalMessage = InternetMessageReadingOperation(data: data)
@@ -146,9 +169,14 @@ class MessageDocument: NSDocument {
         return true
     }
 
+    override var autosavingFileType: String? {
+        return Names.internationalEmailMessageUTI
+    }
+
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
-        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        if isTypeEmail {
+        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        let isTypeRTF = UTTypeConformsTo(typeName as CFString, kUTTypeRTF)
+        if isTypeIntlEmail || isTypeRTF {
             return true
         } else {
             return super.canAsynchronouslyWrite(to: url, ofType: typeName, for: saveOperation)
@@ -156,8 +184,9 @@ class MessageDocument: NSDocument {
     }
 
     override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
-        let isTypeEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        if isTypeEmail {
+        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
+        let isTypeClassicEmail = UTTypeConformsTo(typeName as CFString, Names.traditionalEmailMessageUTI as CFString)
+        if isTypeIntlEmail || isTypeClassicEmail {
             return true
         } else {
             return super.canConcurrentlyReadDocuments(ofType: typeName)
@@ -223,6 +252,11 @@ extension MessageDocument {
         if urlOrNil != contentsURL {
             self.updateChangeCount(.changeReadOtherContents)
         }
+
+        // Reset the file type if it was imported from auto-save.
+        if let allegedSourceFileURL = urlOrNil {
+            self.fileType = try NSDocumentController.shared().typeForContents(of: allegedSourceFileURL)
+        }
     }
 
 }
@@ -237,7 +271,7 @@ extension MessageDocument {
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         let viewController = windowController.contentViewController as! MessageViewController
         viewController.bind(#keyPath(MessageViewController.representedObject), to: self, withKeyPath: #keyPath(message), options: nil)  // Undone in the view controller.
-        viewController.isWritable = !self.isInViewingMode
+        viewController.isWritable = !self.isInViewingMode && !UTTypeConformsTo(self.fileType as! CFString, Names.traditionalEmailMessageUTI as CFString)
         windowController.window?.delegate = viewController
         self.addWindowController(windowController)
     }

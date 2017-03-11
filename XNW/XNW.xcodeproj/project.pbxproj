@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F308A2EB1E6B67F6001A00F4 /* ConvertMessageToAttributedStringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F308A2EA1E6B67F6001A00F4 /* ConvertMessageToAttributedStringOperation.swift */; };
+		F308A2ED1E6E0EC1001A00F4 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */; };
 		F309A7FE1E55A42600733293 /* MessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F309A7FD1E55A42600733293 /* MessageWindow.storyboard */; };
 		F309A8001E55A65400733293 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F309A7FF1E55A65400733293 /* MessageViewController.swift */; };
 		F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */; };
@@ -95,6 +97,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F308A2EA1E6B67F6001A00F4 /* ConvertMessageToAttributedStringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertMessageToAttributedStringOperation.swift; sourceTree = "<group>"; };
+		F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
 		F309A7FD1E55A42600733293 /* MessageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageWindow.storyboard; sourceTree = "<group>"; };
 		F309A7FF1E55A65400733293 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageError.swift; sourceTree = "<group>"; };
@@ -252,12 +256,14 @@
 			isa = PBXGroup;
 			children = (
 				F38AC22D1E1A1109000307D0 /* AppDelegate.swift */,
+				F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */,
 				F34794C11E20E76400872DFF /* MessageDocument.swift */,
 				F309A7FF1E55A65400733293 /* MessageViewController.swift */,
 				F38AC2331E1A110A000307D0 /* Assets.xcassets */,
 				F38AC2351E1A110A000307D0 /* Main.storyboard */,
 				F309A7FD1E55A42600733293 /* MessageWindow.storyboard */,
 				F38AC2381E1A110A000307D0 /* Info.plist */,
+				F308A2EA1E6B67F6001A00F4 /* ConvertMessageToAttributedStringOperation.swift */,
 			);
 			path = XNW;
 			sourceTree = "<group>";
@@ -528,6 +534,8 @@
 				F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */,
 				F309A8001E55A65400733293 /* MessageViewController.swift in Sources */,
 				F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */,
+				F308A2ED1E6E0EC1001A00F4 /* DocumentController.swift in Sources */,
+				F308A2EB1E6B67F6001A00F4 /* ConvertMessageToAttributedStringOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
