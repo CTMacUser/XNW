@@ -291,6 +291,8 @@ public struct LineReader: LazySequenceProtocol, IteratorProtocol {
         return lineString
     }
 
+    // MARK: Helpers
+
     /// Converts a data block to a string with suggested potential encodings.
     static func stringConverted(from data: Data) -> String {
         var result: NSString?
