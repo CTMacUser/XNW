@@ -211,6 +211,41 @@ class MessageDocument: NSDocument {
         super.save(to: url, ofType: typeName, for: saveOperation, completionHandler: completionHandler)
     }
 
+    override func printOperation(withSettings printSettings: [String : Any]) throws -> NSPrintOperation {
+        // Copy the message to a string to print.
+        var messageString: NSAttributedString!
+        var error: Error?
+        let mainContext = self.container.viewContext
+        mainContext.performAndWait {
+            let operation = ConvertMessageToAttributedStringOperation(message: self.message)
+            operation.start()
+            if operation.isCancelled {
+                error = CocoaError(.userCancelled)
+            } else {
+                messageString = operation.messageString
+            }
+        }
+        guard error == nil else { throw error! }
+
+        // Create a view to visualize the message string.
+        var info = self.printInfo.copy() as! NSPrintInfo
+        info.dictionary().addEntries(from: printSettings)
+        info.isHorizontallyCentered = false
+        info.isVerticallyCentered = false
+
+        let marginRect = NSRect(x: info.leftMargin, y: info.bottomMargin, width: info.paperSize.width - info.leftMargin - info.rightMargin, height: info.paperSize.height - info.bottomMargin - info.topMargin)
+        let view = NSTextView(frame: info.imageablePageBounds.intersection(marginRect))
+        view.autoresizingMask = [.viewWidthSizable, .viewHeightSizable]
+        do {
+            view.textStorage?.beginEditing()
+            defer { view.textStorage?.endEditing() }
+
+            view.textStorage?.setAttributedString(messageString)
+        }
+
+        return NSPrintOperation(view: view, printInfo: info)
+    }
+
 }
 
 // MARK: Initializer Overloads

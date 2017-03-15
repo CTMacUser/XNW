@@ -115,11 +115,17 @@
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
                                         <menuItem title="Export As…" id="Hqi-uo-SxJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="saveDocumentTo:" target="Ady-hI-5gd" id="H7j-iw-HjB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
+                                        <menuItem title="Export as PDF…" id="Aiu-b8-Kth">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="saveDocumentToPDF:" target="Ady-hI-5gd" id="VvY-MQ-16k"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="gQQ-yO-Qg3"/>
@@ -131,7 +137,7 @@
                                         </menuItem>
                                         <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
                                             <connections>
-                                                <action selector="print:" target="Ady-hI-5gd" id="qaZ-4w-aoO"/>
+                                                <action selector="printDocument:" target="Ady-hI-5gd" id="YIU-KZ-zn2"/>
                                             </connections>
                                         </menuItem>
                                     </items>
