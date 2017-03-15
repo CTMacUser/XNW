@@ -143,7 +143,7 @@
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MbA-Cx-OlK">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
-                                                                                        <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" title="Table View Cell" id="do0-Y9-Ie3">
+                                                                                        <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="do0-Y9-Ie3">
                                                                                             <font key="font" metaFont="system"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -183,7 +183,7 @@
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4D1-FN-VFg">
                                                                                         <rect key="frame" x="0.0" y="0.0" width="388" height="17"/>
-                                                                                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="Pg4-dQ-Lk1">
+                                                                                        <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Pg4-dQ-Lk1">
                                                                                             <font key="font" metaFont="system"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -243,7 +243,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="512" height="312"/>
                                                     <clipView key="contentView" id="rWO-Z7-ghQ">
                                                         <rect key="frame" x="1" y="1" width="510" height="310"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rux-wU-XBT">
                                                                 <rect key="frame" x="0.0" y="0.0" width="510" height="310"/>
