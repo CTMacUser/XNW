@@ -15,24 +15,13 @@ class DocumentController: NSDocumentController {
 
     // MARK: Properties
 
-    // Check if the current URL open is really an import; recording files needing import.
-    fileprivate var imports = [URL]()
     // Check if the current URL-open panel is really for an import.
-    fileprivate var tryingImport = false
+    fileprivate var pendingImports = 0
 
     // MARK: Overrides
 
-    override func addDocument(_ document: NSDocument) {
-        // Don't record files temporarily opened for import.
-        if let file = document.fileURL, let importIndex = imports.index(of: file) {
-            imports.remove(at: importIndex)
-        } else {
-            super.addDocument(document)
-        }
-    }
-
     override func runModalOpenPanel(_ openPanel: NSOpenPanel, forTypes types: [String]?) -> Int {
-        if tryingImport {
+        if pendingImports > 0 {
             openPanel.title = NSLocalizedString("Import", comment: "Title of Import Open-Panel")
             openPanel.prompt = NSLocalizedString("Import", comment: "Prompt on OK button of Import Open-Panel")
         }
@@ -48,33 +37,20 @@ extension DocumentController {
     /**
         An action method called by the Import command, it runs the modal Open panel and, based on the selected filenames, creates one or more `NSDocument` objects from the contents of the files, but stripping the file identities.
 
-        The method adds the newly created objects to the list of `NSDocument` objects managed by the document controller.  This method calls `openDocument(withContentsOf:display:completionHandler:)`, which creates the first round of `NSDocument` objects.  The documents are anonymized by duplication, and closing any of the first set of documents that weren't already open.
+        This method calls `duplicateDocument(withContentsOf:copying:displayName:)` to copy the data to new `NSDocument` objects.
      */
     @IBAction func newDocumentFrom(_ sender: Any?) {
-        self.tryingImport = true
+        self.pendingImports += 1
         self.beginOpenPanel { possibleFiles in
-            self.tryingImport = false
+            self.pendingImports -= 1
             guard let files = possibleFiles else { return }
 
             for file in files {
-                self.imports.append(file)
-                self.openDocument(withContentsOf: file, display: false) { possibleDocument, alreadyOpen, possibleError in
-                    if let error = possibleError {
-                        self.presentError(error)  // Ignore any recovery
-                    }
-                    if alreadyOpen {
-                        self.imports.remove(at: self.imports.index(of: file)!)
-                    }
-                    if let document = possibleDocument {
-                        do {
-                            try self.duplicateDocument(withContentsOf: file, copying: true, displayName: document.displayName)
-                        } catch {
-                            self.presentError(error) // Ignore any recovery
-                        }
-                        if !alreadyOpen {
-                            document.close()
-                        }
-                    }
+                do {
+                    let fileResources = try file.resourceValues(forKeys: [.localizedNameKey])
+                    try self.duplicateDocument(withContentsOf: file, copying: true, displayName: fileResources.localizedName)
+                } catch {
+                    self.presentError(error)  // Ignore any recovery
                 }
             }
         }
