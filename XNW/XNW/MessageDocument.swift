@@ -9,6 +9,7 @@
 import Cocoa
 import CoreData
 import InternetMessages
+import InternetMessagesSupport
 
 
 class MessageDocument: NSDocument {
