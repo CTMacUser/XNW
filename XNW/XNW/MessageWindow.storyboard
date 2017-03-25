@@ -18,8 +18,6 @@
                         <value key="minSize" type="size" width="400" height="225"/>
                         <toolbar key="toolbar" implicitIdentifier="B21D1C5A-F45A-4230-BE59-5866DCD3D3AC" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="HoJ-Ob-fPg">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowColorsItem" id="1fh-5Y-9Xs"/>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="7RY-gm-bNg"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="eXU-BJ-BmS"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="4sL-BB-Y0p"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="rEe-dJ-ewh"/>
@@ -94,7 +92,7 @@
                     </connections>
                 </arrayController>
             </objects>
-            <point key="canvasLocation" x="20" y="256"/>
+            <point key="canvasLocation" x="20" y="220"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="f0L-8D-G57">
