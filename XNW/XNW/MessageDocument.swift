@@ -74,7 +74,6 @@ class MessageDocument: NSDocument {
     }
 
     override func makeWindowControllers() {
-        // Use the editable template for messages coming from files.
         self.makeMessageWindow()
     }
 
@@ -303,13 +302,11 @@ extension MessageDocument {
 
     /// Create a window (and controller) for messages.
     func makeMessageWindow() {
-        let storyboard = NSStoryboard(name: MessageViewController.Names.storyboard, bundle: nil)
-        let windowController = storyboard.instantiateInitialController() as! NSWindowController
-        let viewController = windowController.contentViewController as! MessageViewController
-        viewController.bind(#keyPath(MessageViewController.representedObject), to: self, withKeyPath: #keyPath(message), options: nil)  // Undone in the view controller.
-        viewController.isWritable = !self.isInViewingMode && !UTTypeConformsTo(self.fileType as! CFString, Names.traditionalEmailMessageUTI as CFString)
-        windowController.window?.delegate = viewController
-        self.addWindowController(windowController)
+        let storyboard = NSStoryboard(name: MessageWindowController.Names.storyboard, bundle: nil)
+        let controller = storyboard.instantiateInitialController() as! MessageWindowController
+        controller.bind(#keyPath(MessageWindowController.representedMessage), to: self, withKeyPath: #keyPath(message))  // Undone in window controller.
+        controller.bind(#keyPath(MessageWindowController.isWritable), to: self, withKeyPath: #keyPath(isInViewingMode), options: [NSValueTransformerNameBindingOption: NSValueTransformerName.negateBooleanTransformerName])  // Undone in window controller.
+        self.addWindowController(controller)
     }
 
 }
