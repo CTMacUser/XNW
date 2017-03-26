@@ -66,7 +66,34 @@ class MessageWindowController: NSWindowController {
             controller?.bind(#keyPath(NSViewController.representedObject), to: self, withKeyPath: #keyPath(messageController))  // Undone during window close.
         }
         headerViewController.bind(#keyPath(NSViewController.representedObject), to: self, withKeyPath: #keyPath(headerController))  // Undone during window close.
+    }
 
+    // MARK: Overrides, NSMenu​Validation (informal)
+
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        let addBodySelector = #selector(addBody(_:))
+        let removeBodySelector = #selector(removeBody(_:))
+        let bodyChangers = Set(arrayLiteral: addBodySelector, removeBodySelector)
+        guard let action = menuItem.action, bodyChangers.contains(action) else { return super.validateMenuItem(menuItem) }
+
+        let bodyValue = (messageController.selection as! NSObject).value(forKey: #keyPath(RawMessage.body)) as! String?
+        return (bodyValue == nil) == (action == addBodySelector)
+    }
+
+}
+
+// MARK: Actions
+
+extension MessageWindowController {
+
+    /// Set an empty string as the message body.
+    @IBAction func addBody(_ sender: Any) {
+        (self.messageController.selection as! NSObject).setValue("", forKey: #keyPath(RawMessage.body))
+    }
+
+    /// Remove the message body.
+    @IBAction func removeBody(_ sender: Any) {
+        (self.messageController.selection as! NSObject).setValue(nil, forKey: #keyPath(RawMessage.body))
     }
 
 }

@@ -310,22 +310,3 @@ extension MessageDocument {
     }
 
 }
-
-// MARK: - Actions
-
-extension MessageDocument {
-
-    /// Add an empty string as the message body if it doesn't exist yet.
-    @IBAction func addBody(_ sender: Any) {
-        guard self.message.body == nil else { return }
-
-        self.message.body = ""
-    }
-
-    /// Remove the message body.
-    @IBAction func removeBody(_ sender: Any) {
-        Swift.print("\(#function) activated.")
-        self.message.body = nil
-    }
-
-}

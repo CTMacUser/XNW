@@ -636,6 +636,25 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Message" id="Tsl-5U-OGv">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Message" id="N8a-tv-73d">
+                                    <items>
+                                        <menuItem title="Add Body" id="UN4-9h-lyQ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="addBody:" target="Ady-hI-5gd" id="Qvo-la-loc"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Remove Body" id="vg8-vq-1gF">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="removeBody:" target="Ady-hI-5gd" id="oXM-in-jWx"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
