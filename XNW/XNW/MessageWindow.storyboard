@@ -13,7 +13,7 @@
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="0dF-nr-o28">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" unifiedTitleAndToolbar="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
-                        <rect key="contentRect" x="8" y="672" width="512" height="384"/>
+                        <rect key="contentRect" x="8" y="591" width="620" height="465"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
                         <value key="minSize" type="size" width="400" height="225"/>
                         <toolbar key="toolbar" implicitIdentifier="B21D1C5A-F45A-4230-BE59-5866DCD3D3AC" autosavesConfiguration="NO" displayMode="iconOnly" sizeMode="regular" id="HoJ-Ob-fPg">
@@ -103,7 +103,7 @@
                         <splitViewItem id="V2E-mZ-zaa"/>
                     </splitViewItems>
                     <splitView key="splitView" misplaced="YES" dividerStyle="thin" id="NyB-4h-JKS">
-                        <rect key="frame" x="0.0" y="51" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="51" width="620" height="465"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </splitView>
                     <connections>
@@ -113,24 +113,24 @@
                 </splitViewController>
                 <customObject id="lQz-NI-9FU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="677" y="226"/>
+            <point key="canvasLocation" x="753" y="220"/>
         </scene>
         <!--View Controller (Header)-->
         <scene sceneID="6mL-cn-uhR">
             <objects>
                 <viewController id="WRG-9K-xct" userLabel="View Controller (Header)" sceneMemberID="viewController">
                     <view key="view" id="zrR-pM-Ezt">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RzH-Bm-Iz6">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="620" height="200"/>
                                 <clipView key="contentView" id="KgU-ef-Pnk">
-                                    <rect key="frame" x="1" y="0.0" width="448" height="299"/>
+                                    <rect key="frame" x="1" y="0.0" width="618" height="199"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="7Y7-si-xtZ" viewBased="YES" id="xOj-wX-YcA">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="276"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="618" height="176"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -173,7 +173,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="326" minWidth="40" maxWidth="1000" id="3ve-fH-ej6">
+                                                <tableColumn width="496" minWidth="40" maxWidth="1000" id="3ve-fH-ej6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Body">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -187,11 +187,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="OOI-We-wsl">
-                                                            <rect key="frame" x="120" y="1" width="326" height="17"/>
+                                                            <rect key="frame" x="120" y="1" width="496" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mFU-RU-A38">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="326" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="496" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="r99-57-aqm">
                                                                         <font key="font" metaFont="user"/>
@@ -230,7 +230,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="7Y7-si-xtZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="448" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="618" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -244,8 +244,10 @@
                     </view>
                 </viewController>
                 <customObject id="XZx-4o-bXy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="WM0-oD-dnM"/>
+                <userDefaultsController id="q9K-uu-X5t"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="59"/>
+            <point key="canvasLocation" x="1547" y="39"/>
         </scene>
         <!--Tab View Controller (Body)-->
         <scene sceneID="RB8-Aa-4ft">
@@ -255,8 +257,8 @@
                         <tabViewItem identifier="" id="4C1-z6-4Qr"/>
                         <tabViewItem identifier="" id="lnm-uI-x4j"/>
                     </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="LgX-iy-Be8">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                    <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="LgX-iy-Be8">
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="100"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
@@ -275,21 +277,21 @@
                 </tabViewController>
                 <customObject id="gdq-26-b4c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="434"/>
+            <point key="canvasLocation" x="1547" y="374"/>
         </scene>
         <!--View Controller (Nil)-->
         <scene sceneID="apC-JT-duv">
             <objects>
                 <viewController id="oGJ-O0-FVb" userLabel="View Controller (Nil)" sceneMemberID="viewController">
                     <view key="view" id="MGl-Dw-4NB">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="61"/>
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="61"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="alK-zs-DfH">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="61"/>
+                                <rect key="frame" x="0.0" y="0.0" width="620" height="61"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ljc-SG-1l7">
-                                        <rect key="frame" x="176" y="13" width="99" height="32"/>
+                                        <rect key="frame" x="261" y="13" width="99" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="87" id="RMS-9M-onu"/>
                                             <constraint firstAttribute="height" constant="21" id="ePw-Mk-wWA"/>
@@ -325,32 +327,37 @@
                 </viewController>
                 <customObject id="BfD-Vj-lqt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="143.5"/>
+            <point key="canvasLocation" x="2348" y="179"/>
         </scene>
         <!--View Controller (Text)-->
         <scene sceneID="jKc-vB-8rh">
             <objects>
                 <viewController id="Ehg-a9-Ivg" userLabel="View Controller (Text)" sceneMemberID="viewController">
                     <view key="view" id="MaS-l7-igB">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="620" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dw3-XY-oKF">
-                                <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="620" height="300"/>
                                 <clipView key="contentView" id="UOV-vT-ie7">
-                                    <rect key="frame" x="1" y="1" width="448" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="618" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" richText="NO" usesFontPanel="YES" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" spellingCorrection="YES" smartInsertDelete="YES" id="KPY-wi-rni">
-                                            <rect key="frame" x="0.0" y="0.0" width="448" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="618" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="448" height="298"/>
-                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <size key="minSize" width="618" height="298"/>
+                                            <size key="maxSize" width="618" height="10000000"/>
                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
                                                 <binding destination="Ehg-a9-Ivg" name="editable" keyPath="representedObject.isEditable" id="8re-y2-raF"/>
                                                 <binding destination="Ehg-a9-Ivg" name="value" keyPath="representedObject.selection.body" id="V6H-tt-22R"/>
+                                                <binding destination="Z6y-ol-hUY" name="font" keyPath="values.TextScreenFont" id="dAJ-F7-X3I">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textView>
                                     </subviews>
@@ -364,7 +371,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="48G-dG-1kn">
-                                    <rect key="frame" x="433" y="1" width="16" height="298"/>
+                                    <rect key="frame" x="603" y="1" width="16" height="298"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -378,8 +385,9 @@
                     </view>
                 </viewController>
                 <customObject id="3L4-k7-37n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Z6y-ol-hUY"/>
             </objects>
-            <point key="canvasLocation" x="1952" y="615"/>
+            <point key="canvasLocation" x="2348" y="530"/>
         </scene>
     </scenes>
     <resources>

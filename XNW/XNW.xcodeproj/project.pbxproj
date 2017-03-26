@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F308A2ED1E6E0EC1001A00F4 /* DocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */; };
+		F30EE06B1E87C69700BE9499 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30EE06A1E87C69700BE9499 /* Defaults.swift */; };
 		F31037141E4FD66F005A2CE2 /* InternetMessageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */; };
 		F31037161E523B01005A2CE2 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31037151E523B01005A2CE2 /* String+Additions.swift */; };
 		F3186FAF1E4AA43800FE643F /* InternetMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; };
@@ -126,6 +127,7 @@
 
 /* Begin PBXFileReference section */
 		F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
+		F30EE06A1E87C69700BE9499 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		F31037131E4FD66F005A2CE2 /* InternetMessageError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageError.swift; sourceTree = "<group>"; };
 		F31037151E523B01005A2CE2 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		F3186FA61E4AA43700FE643F /* InternetMessages.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InternetMessages.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				F38AC22D1E1A1109000307D0 /* AppDelegate.swift */,
+				F30EE06A1E87C69700BE9499 /* Defaults.swift */,
 				F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */,
 				F34794C11E20E76400872DFF /* MessageDocument.swift */,
 				F34471631E83BBE20085F71D /* MessageWindowController.swift */,
@@ -694,6 +697,7 @@
 			files = (
 				F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */,
 				F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */,
+				F30EE06B1E87C69700BE9499 /* Defaults.swift in Sources */,
 				F308A2ED1E6E0EC1001A00F4 /* DocumentController.swift in Sources */,
 				F34471641E83BBE20085F71D /* MessageWindowController.swift in Sources */,
 			);
