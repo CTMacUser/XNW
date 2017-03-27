@@ -20,12 +20,12 @@ class DocumentController: NSDocumentController {
 
     // MARK: Overrides
 
-    override func runModalOpenPanel(_ openPanel: NSOpenPanel, forTypes types: [String]?) -> Int {
+    override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         if pendingImports > 0 {
             openPanel.title = NSLocalizedString("Import", comment: "Title of Import Open-Panel")
             openPanel.prompt = NSLocalizedString("Import", comment: "Prompt on OK button of Import Open-Panel")
         }
-        return super.runModalOpenPanel(openPanel, forTypes: types)
+        return super.beginOpenPanel(openPanel, forTypes: inTypes, completionHandler: completionHandler)
     }
 
 }
