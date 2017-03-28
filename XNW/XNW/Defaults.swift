@@ -17,20 +17,16 @@ struct Defaults {
 
     /// Keys for app-specific preferences
     enum KeyNames {
-        static let listScreenFont = "ListScreenFont"
-        static let listPrintingFont = "ListPrintingFont"
-        static let textScreenFont = "TextScreenFont"
-        static let textPrintingFont = "TextPrintingFont"
+        static let listFont = "ListFont"
+        static let textFont = "TextFont"
     }
 
     // MARK: Properties
 
     /// The default preferences for this app.
     static let appDefaults: [String: Any] = [
-        KeyNames.listScreenFont: Defaults.encode(from: NSFont.userFont(ofSize: 0)!),
-        KeyNames.listPrintingFont: Defaults.encode(from: NSFont.userFont(ofSize: 0)!),
-        KeyNames.textScreenFont: Defaults.encode(from: NSFont.userFixedPitchFont(ofSize: 0)!),
-        KeyNames.textPrintingFont: Defaults.encode(from: NSFont.userFixedPitchFont(ofSize: 0)!)
+        KeyNames.listFont: Defaults.encode(from: NSFont.userFont(ofSize: 0)!),
+        KeyNames.textFont: Defaults.encode(from: NSFont.userFixedPitchFont(ofSize: 0)!),
     ]
 
     // MARK: Conversions
@@ -75,43 +71,23 @@ extension UserDefaults {
 
 extension UserDefaults {
 
-    /// Font for displaying various lists on screen.
-    var listScreenFont: NSFont {
+    /// Font for list views.
+    var listFont: NSFont {
         get {
-            return self.font(forKey: Defaults.KeyNames.listScreenFont)!
+            return self.font(forKey: Defaults.KeyNames.listFont)!
         }
         set {
-            self.set(newValue, forKey: Defaults.KeyNames.listScreenFont)
+            self.set(newValue, forKey: Defaults.KeyNames.listFont)
         }
     }
 
-    /// Font for printing various lists.
-    var listPrintingFont: NSFont {
+    /// Font for text-block views.
+    var textFont: NSFont {
         get {
-            return self.font(forKey: Defaults.KeyNames.listPrintingFont)!
+            return self.font(forKey: Defaults.KeyNames.textFont)!
         }
         set {
-            self.set(newValue, forKey: Defaults.KeyNames.listPrintingFont)
-        }
-    }
-
-    /// Font for displaying various text blocks on screen.
-    var textScreenFont: NSFont {
-        get {
-            return self.font(forKey: Defaults.KeyNames.textScreenFont)!
-        }
-        set {
-            self.set(newValue, forKey: Defaults.KeyNames.textScreenFont)
-        }
-    }
-
-    /// Font for printing various text blocks.
-    var textPrintingFont: NSFont {
-        get {
-            return self.font(forKey: Defaults.KeyNames.textPrintingFont)!
-        }
-        set {
-            self.set(newValue, forKey: Defaults.KeyNames.textPrintingFont)
+            self.set(newValue, forKey: Defaults.KeyNames.textFont)
         }
     }
 

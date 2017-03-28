@@ -353,7 +353,7 @@
                                             <connections>
                                                 <binding destination="Ehg-a9-Ivg" name="editable" keyPath="representedObject.isEditable" id="8re-y2-raF"/>
                                                 <binding destination="Ehg-a9-Ivg" name="value" keyPath="representedObject.selection.body" id="V6H-tt-22R"/>
-                                                <binding destination="Z6y-ol-hUY" name="font" keyPath="values.TextScreenFont" id="dAJ-F7-X3I">
+                                                <binding destination="Z6y-ol-hUY" name="font" keyPath="values.TextFont" id="dAJ-F7-X3I">
                                                     <dictionary key="options">
                                                         <string key="NSValueTransformerName">NSKeyedUnarchiveFromData</string>
                                                     </dictionary>

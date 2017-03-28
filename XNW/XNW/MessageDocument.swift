@@ -100,8 +100,8 @@ class MessageDocument: NSDocument {
             }
             if isTypeRTF {
                 let operation = ConvertMessageToAttributedStringOperation(message: backgroundMessage)
-                operation.headerBaseFont = UserDefaults.standard.listScreenFont
-                operation.bodyFont = UserDefaults.standard.textScreenFont
+                operation.headerBaseFont = UserDefaults.standard.listFont
+                operation.bodyFont = UserDefaults.standard.textFont
                 operation.start()
                 if operation.isCancelled {
                     backgroundError = CocoaError(.userCancelled)
@@ -220,8 +220,8 @@ class MessageDocument: NSDocument {
         let mainContext = self.container.viewContext
         mainContext.performAndWait {
             let operation = ConvertMessageToAttributedStringOperation(message: self.message)
-            operation.headerBaseFont = UserDefaults.standard.listPrintingFont
-            operation.bodyFont = UserDefaults.standard.textPrintingFont
+            operation.headerBaseFont = UserDefaults.standard.listFont
+            operation.bodyFont = UserDefaults.standard.textFont
             operation.start()
             if operation.isCancelled {
                 error = CocoaError(.userCancelled)
