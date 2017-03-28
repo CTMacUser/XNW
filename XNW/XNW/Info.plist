@@ -13,10 +13,14 @@
 			<string>UTF-8 E-Mail</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>$(PRODUCT_BUNDLE_IDENTIFIER).email</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).MessageDocument</string>
 			<key>NSExportableTypes</key>
@@ -29,10 +33,14 @@
 			<string>ASCII E-Mail</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.apple.mail.email</string>
 			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).MessageDocument</string>
 			<key>NSExportableTypes</key>

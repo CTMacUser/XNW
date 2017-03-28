@@ -87,14 +87,15 @@ class MessageDocument: NSDocument {
         self.unblockUserInteraction()
 
         // Do the type check after unlocking the main thread; don't risk deadlocking the app.
-        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        let isTypeRTF = UTTypeConformsTo(typeName as CFString, kUTTypeRTF)
+        let isTypeIntlEmail = UTTypeConformsTo(Names.internationalEmailMessageUTI as CFString, typeName as CFString)
+        let isTypeRTF = UTTypeConformsTo(kUTTypeRTF, typeName as CFString)
         guard isTypeIntlEmail || isTypeRTF else { throw CocoaError(.fileWriteUnknown) }
 
         // Extract the raw data from the message.
         var messageData: Data?
         var backgroundError: Error?
         backgroundContext.performAndWait {
+            // Since we may be exporting to a more general type, order the UTI checks here so the most informative type goes first.
             if isTypeIntlEmail {
                 messageData = backgroundMessage.messageAsExternalData
             }
@@ -176,8 +177,8 @@ class MessageDocument: NSDocument {
     }
 
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSSaveOperationType) -> Bool {
-        let isTypeIntlEmail = UTTypeConformsTo(typeName as CFString, Names.internationalEmailMessageUTI as CFString)
-        let isTypeRTF = UTTypeConformsTo(typeName as CFString, kUTTypeRTF)
+        let isTypeIntlEmail = UTTypeConformsTo(Names.internationalEmailMessageUTI as CFString, typeName as CFString)
+        let isTypeRTF = UTTypeConformsTo(kUTTypeRTF, typeName as CFString)
         if isTypeIntlEmail || isTypeRTF {
             return true
         } else {
