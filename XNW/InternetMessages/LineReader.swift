@@ -298,7 +298,7 @@ public struct LineReader: LazySequenceProtocol, IteratorProtocol {
         var result: NSString?
         let encoding = NSString.stringEncoding(for: data, encodingOptions: [.allowLossyKey: false, .suggestedEncodingsKey: LineReader.rawEncodings, .useOnlySuggestedEncodingsKey: true], convertedString: &result, usedLossyConversion: nil)
         assert(encoding != 0)  // Shouldn't happen since Mac-Roman has valid characters for all 256 values.
-        return result as! String
+        return result! as String
     }
 
 }
