@@ -20,8 +20,6 @@
 		F3186FC91E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */; };
 		F337CD4F1E653B0A00C0379F /* InternetMessageLineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337CD4E1E653B0A00C0379F /* InternetMessageLineCategory.swift */; };
 		F337CD511E653B6E00C0379F /* InternetMessageLineCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F337CD501E653B6E00C0379F /* InternetMessageLineCategoryTests.swift */; };
-		F34471641E83BBE20085F71D /* MessageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34471631E83BBE20085F71D /* MessageWindowController.swift */; };
-		F34471661E83BE460085F71D /* MessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F34471651E83BE460085F71D /* MessageWindow.storyboard */; };
 		F34794C21E20E76400872DFF /* MessageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34794C11E20E76400872DFF /* MessageDocument.swift */; };
 		F35CB4281E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4261E4D9F6E00F69680 /* RawMessagesModel.xcdatamodeld */; };
 		F35CB42D1E4DA74600F69680 /* RawMessage+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */; };
@@ -37,6 +35,9 @@
 		F374D8CF1E7D4E670090F5AB /* InternetMessages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3186FA61E4AA43700FE643F /* InternetMessages.framework */; };
 		F374D8D11E7D502B0090F5AB /* ConvertMessageToAttributedStringOperationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F374D8D01E7D502B0090F5AB /* ConvertMessageToAttributedStringOperationTests.swift */; };
 		F383EC881E52E27C00F0ED2F /* StringAdditionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */; };
+		F386C7BF1E90239700A515A9 /* MessageWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F386C7BE1E90239700A515A9 /* MessageWindowController.swift */; };
+		F386C7C11E9023BE00A515A9 /* MessageWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F386C7C01E9023BE00A515A9 /* MessageWindow.storyboard */; };
+		F386C7C51E907A8000A515A9 /* TallerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F386C7C41E907A8000A515A9 /* TallerTextField.swift */; };
 		F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38AC22D1E1A1109000307D0 /* AppDelegate.swift */; };
 		F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2331E1A110A000307D0 /* Assets.xcassets */; };
 		F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F38AC2351E1A110A000307D0 /* Main.storyboard */; };
@@ -140,8 +141,6 @@
 		F3186FC81E4CF88600FE643F /* InternetMessageHeaderFieldTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageHeaderFieldTests.swift; sourceTree = "<group>"; };
 		F337CD4E1E653B0A00C0379F /* InternetMessageLineCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageLineCategory.swift; sourceTree = "<group>"; };
 		F337CD501E653B6E00C0379F /* InternetMessageLineCategoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternetMessageLineCategoryTests.swift; sourceTree = "<group>"; };
-		F34471631E83BBE20085F71D /* MessageWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageWindowController.swift; sourceTree = "<group>"; };
-		F34471651E83BE460085F71D /* MessageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageWindow.storyboard; sourceTree = "<group>"; };
 		F34794C11E20E76400872DFF /* MessageDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDocument.swift; sourceTree = "<group>"; };
 		F35CB4271E4D9F6E00F69680 /* RawMessagesModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RawMessagesModel.xcdatamodel; sourceTree = "<group>"; };
 		F35CB4291E4DA74600F69680 /* RawMessage+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RawMessage+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -157,6 +156,9 @@
 		F374D8CD1E7D4DE80090F5AB /* ConvertMessageToAttributedStringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertMessageToAttributedStringOperation.swift; sourceTree = "<group>"; };
 		F374D8D01E7D502B0090F5AB /* ConvertMessageToAttributedStringOperationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertMessageToAttributedStringOperationTests.swift; sourceTree = "<group>"; };
 		F383EC871E52E27C00F0ED2F /* StringAdditionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringAdditionsTests.swift; sourceTree = "<group>"; };
+		F386C7BE1E90239700A515A9 /* MessageWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageWindowController.swift; sourceTree = "<group>"; };
+		F386C7C01E9023BE00A515A9 /* MessageWindow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageWindow.storyboard; sourceTree = "<group>"; };
+		F386C7C41E907A8000A515A9 /* TallerTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TallerTextField.swift; sourceTree = "<group>"; };
 		F38AC22A1E1A1109000307D0 /* XNW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XNW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F38AC22D1E1A1109000307D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F38AC2331E1A110A000307D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -335,11 +337,12 @@
 				F30EE06A1E87C69700BE9499 /* Defaults.swift */,
 				F308A2EC1E6E0EC1001A00F4 /* DocumentController.swift */,
 				F34794C11E20E76400872DFF /* MessageDocument.swift */,
-				F34471631E83BBE20085F71D /* MessageWindowController.swift */,
+				F386C7BE1E90239700A515A9 /* MessageWindowController.swift */,
 				F38AC2331E1A110A000307D0 /* Assets.xcassets */,
 				F38AC2351E1A110A000307D0 /* Main.storyboard */,
-				F34471651E83BE460085F71D /* MessageWindow.storyboard */,
+				F386C7C01E9023BE00A515A9 /* MessageWindow.storyboard */,
 				F38AC2381E1A110A000307D0 /* Info.plist */,
+				F386C7C41E907A8000A515A9 /* TallerTextField.swift */,
 			);
 			path = XNW;
 			sourceTree = "<group>";
@@ -619,7 +622,7 @@
 			files = (
 				F38AC2341E1A110A000307D0 /* Assets.xcassets in Resources */,
 				F38AC2371E1A110A000307D0 /* Main.storyboard in Resources */,
-				F34471661E83BE460085F71D /* MessageWindow.storyboard in Resources */,
+				F386C7C11E9023BE00A515A9 /* MessageWindow.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,7 +702,8 @@
 				F38AC22E1E1A1109000307D0 /* AppDelegate.swift in Sources */,
 				F30EE06B1E87C69700BE9499 /* Defaults.swift in Sources */,
 				F308A2ED1E6E0EC1001A00F4 /* DocumentController.swift in Sources */,
-				F34471641E83BBE20085F71D /* MessageWindowController.swift in Sources */,
+				F386C7BF1E90239700A515A9 /* MessageWindowController.swift in Sources */,
+				F386C7C51E907A8000A515A9 /* TallerTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
