@@ -209,6 +209,7 @@ extension MessageHeaderViewController: NSTableViewDelegate {
             }
 
             let column = tableView.tableColumns[tableView.column(withIdentifier: columnId)]
+            prototypeCell.textField?.font = UserDefaults.standard.listFont  // Part of the workaround 2 methods down.
             prototypeCell.textField?.stringValue = value
             prototypeCell.widthAnchor.constraint(equalToConstant: column.width).isActive = true
             prototypeCell.layoutSubtreeIfNeeded()
@@ -221,6 +222,15 @@ extension MessageHeaderViewController: NSTableViewDelegate {
         guard self.headerTable === (notification.object as? NSTableView) else { return }
 
         self.headerTable.noteHeightOfRows(withIndexesChanged: IndexSet(integersIn: 0 ..< self.headerTable.numberOfRows))
+    }
+
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard self.headerTable === tableView, let column = tableColumn else { return nil }
+
+        // The alteration two lines below is a workaround for setting a Cocoa Binding for the font of a table cell view that's part of a table view in a storyboard (but not a NIB) hangs the XIB compiler (<rdar://31468797>).
+        let cellView = tableView.make(withIdentifier: column.identifier, owner: self) as? NSTableCellView
+        cellView?.textField?.font = UserDefaults.standard.listFont
+        return cellView
     }
 
 }
