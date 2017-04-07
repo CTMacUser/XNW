@@ -25,4 +25,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    // MARK: NSMenuValidation (informal)
+
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        guard let action = menuItem.action else { return super.validateMenuItem(menuItem) }
+
+        switch action {
+        case #selector(removeHeaderField(_:)):
+            // There's no message header active to do any work; this validation just changes the title back to the default.
+            menuItem.title = NSLocalizedString("Remove Header Field", comment: "Title of the 'Remove Header Field' menu item when no qualifying window is open.")
+            return false
+
+        default:
+            return super.validateMenuItem(menuItem)
+        }
+    }
+
+}
+
+// MARK: Actions
+
+extension AppDelegate {
+
+    @IBAction func removeHeaderField(_ sender: Any) {
+        // Nothing; the real version is in `MessageWindowController`.
+    }
+
 }

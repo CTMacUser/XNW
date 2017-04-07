@@ -75,8 +75,14 @@ extension MessageWindowController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         guard let action = item.action else { return true }
 
-        let selectorSet = Set(arrayLiteral: #selector(addBody(_:)), #selector(removeBody(_:)), #selector(addHeaderField(_:)), #selector(removeHeaderField(_:)))
+        let selectorSet = Set(arrayLiteral: #selector(addBody(_:)), #selector(removeBody(_:)), #selector(addHeaderField(_:)))
         switch action {
+        case #selector(removeHeaderField(_:)):
+            let controller = self.splitViewController.header.headerController!
+            let menuItem = item as? NSMenuItem
+            menuItem?.title = String.localizedStringWithFormat(NSLocalizedString("Remove %ld Header Field(s)", comment: "Action to remove selected header fields; argument is number of fields selected."), controller.selectionIndexes.count as CLong)
+            return self.representedMessage != nil && self.isWritable && controller.canRemove
+
         case let action2 where selectorSet.contains(action2):
             guard let message = self.representedMessage, self.isWritable else { return false }
 
@@ -87,8 +93,6 @@ extension MessageWindowController: NSUserInterfaceValidations {
                 return message.body != nil
             case #selector(addHeaderField(_:)):
                 return self.splitViewController.header.headerController.canAdd
-            case #selector(removeHeaderField(_:)):
-                return self.splitViewController.header.headerController.canRemove
             default:
                 return true
             }

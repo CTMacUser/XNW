@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Remove %ld Header Field(s)</key>
+	<dict>
+		<key>NSStringLocalizedFormatKey</key>
+		<string>Remove %#@count_header_fields@</string>
+		<key>count_header_fields</key>
+		<dict>
+			<key>NSStringFormatSpecTypeKey</key>
+			<string>NSStringPluralRuleType</string>
+			<key>NSStringFormatValueTypeKey</key>
+			<string>ld</string>
+			<key>zero</key>
+			<string>No Header Fields</string>
+			<key>one</key>
+			<string>Header Field</string>
+			<key>other</key>
+			<string>%ld Header Fields</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
